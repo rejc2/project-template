@@ -1,0 +1,6 @@
+export default {
+	printWidth: 100,
+	singleQuote: true,
+	tabWidth: 3,
+	useTabs: true,
+};

@@ -1,0 +1,19 @@
+{
+  "name": "@rejc2/project-template-monorepo",
+  "packageManager": "yarn@4.12.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "yarn workspaces foreach --all run test"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*",
+    "test-packages/*"
+  ],
+  "devDependencies": {
+    "prettier": "^3.8.1"
+  }
+}
