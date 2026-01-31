@@ -1,7 +1,8 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { routes } from './routes';
 import { ErrorBoundary } from 'react-error-boundary';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+
 import { ErrorPage } from './pages/ErrorPage';
+import { routes } from './routes';
 
 const router = createBrowserRouter(routes);
 

@@ -1,8 +1,8 @@
 import eslint from '@eslint/js';
-import tseslint from 'typescript-eslint';
+import type { Linter } from 'eslint';
 import reactPlugin from 'eslint-plugin-react';
 import reactHooksPlugin from 'eslint-plugin-react-hooks';
-import type { Linter } from 'eslint';
+import tseslint from 'typescript-eslint';
 
 /**
  * Shared ESLint configuration for TypeScript and React projects.
