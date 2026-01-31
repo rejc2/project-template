@@ -3,6 +3,12 @@ export default {
 	singleQuote: true,
 	tabWidth: 3,
 	useTabs: true,
+
+	plugins: ['@trivago/prettier-plugin-sort-imports'],
+	importOrder: ['<THIRD_PARTY_MODULES>', '^[./]'],
+	importOrderSeparation: false,
+	importOrderSortSpecifiers: true,
+
 	overrides: [
 		{
 			files: '**/package.json',
