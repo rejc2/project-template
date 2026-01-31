@@ -1,61 +1,94 @@
 name: Tests
 
 on:
-   push:
-      branches: [main]
-   pull_request:
-      branches: [main]
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
 
 jobs:
-   unit-tests:
-      name: Unit Tests (apps/web)
-      runs-on: ubuntu-latest
+  unit-tests:
+    name: Unit Tests (apps/web)
+    runs-on: ubuntu-latest
 
-      steps:
-         - uses: actions/checkout@v4
+    steps:
+      - uses: actions/checkout@v4
 
-         - name: Setup Node.js
-           uses: actions/setup-node@v4
-           with:
-              node-version: '20'
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
 
-         - name: Enable Corepack
-           run: corepack enable
+      - name: Enable Corepack
+        run: corepack enable
 
-         - name: Install dependencies
-           run: yarn install --immutable
+      - name: Install dependencies
+        run: yarn install --immutable
 
-         - name: Run unit tests
-           run: yarn workspace @rejc2/project-template-web test --run
+      - name: Build
+        yarn build
 
-   playwright-tests:
-      name: Playwright Tests
-      runs-on: ubuntu-latest
+      - name: Check types
+        run: yarn typecheck
 
-      steps:
-         - uses: actions/checkout@v4
+      - name: Lint (errors only)
+        run: yarn lint
 
-         - name: Setup Node.js
-           uses: actions/setup-node@v4
-           with:
-              node-version: '20'
+      - name: Run unit tests
+        run: yarn test
 
-         - name: Enable Corepack
-           run: corepack enable
+  final-lint:
+    name: Final lint
+    runs-on: ubuntu-latest
 
-         - name: Install dependencies
-           run: yarn install --immutable
+    steps:
+      - uses: actions/checkout@v4
 
-         - name: Install Playwright browsers
-           run: yarn workspace @rejc2/project-template-playwright-tests exec playwright install --with-deps chromium
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
 
-         - name: Run Playwright tests
-           run: yarn workspace @rejc2/project-template-playwright-tests test
+      - name: Enable Corepack
+        run: corepack enable
 
-         - name: Upload Playwright report
-           uses: actions/upload-artifact@v4
-           if: ${{ !cancelled() }}
-           with:
-              name: playwright-report
-              path: test-packages/playwright-tests/playwright-report/
-              retention-days: 30
+      - name: Install dependencies
+        run: yarn install --immutable
+
+      - name: Lint (strict)
+        run: yarn lint:strict
+
+      - name: Check formatting
+        run: yarn format:check
+
+  playwright-tests:
+    name: 'Playwright Tests'
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.58.0-noble
+      options: --user 1001
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Install dependencies
+        run: yarn install --immutable
+
+      - name: Run Playwright tests
+        run: yarn workspace @rejc2/project-template-playwright-tests playwright
+
+      - name: Upload Playwright report
+        uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: playwright-report
+          path: test-packages/playwright-tests/playwright-report/
+          retention-days: 30
