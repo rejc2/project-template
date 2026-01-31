@@ -1,0 +1,20 @@
+# Ignore everything by default:
+/*
+
+# Include source files:
+!/.github
+!/apps
+!/packages
+!/test-packages
+
+# Include formattable files in the root:
+!/.editorconfig
+!/*.js
+!/*.json
+!/*.md
+!/*.ts
+!/*.yaml
+!/*.yml
+
+# Exclude generated files:
+generated
