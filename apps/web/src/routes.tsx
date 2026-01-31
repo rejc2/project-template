@@ -1,4 +1,4 @@
-import { RouteObject } from 'react-router-dom';
+import type { RouteObject } from 'react-router-dom';
 import { HomePage } from './pages/HomePage';
 import { RouteErrorBoundary } from './components/RouteErrorBoundary';
 

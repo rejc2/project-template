@@ -1,5 +1,5 @@
 # Ignore everything by default:
--
+/*
 
 # Include source files:
 !/.github
@@ -17,4 +17,4 @@
 !/*.yml
 
 # Exclude generated files:
-package.json
+generated
