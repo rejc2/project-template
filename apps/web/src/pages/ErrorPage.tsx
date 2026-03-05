@@ -1,3 +1,4 @@
+import { Box, Button, Typography } from '@mui/material';
 import { isRouteErrorResponse } from 'react-router-dom';
 
 interface ErrorPageProps {
@@ -16,10 +17,10 @@ export function ErrorPage({ error }: ErrorPageProps) {
 	}
 
 	return (
-		<div style={{ padding: '20px', textAlign: 'center' }}>
-			<h1>{title}</h1>
-			{message && <p>{message}</p>}
-			<button onClick={() => window.location.reload()}>Reload page</button>
-		</div>
+		<Box sx={{ p: 3, textAlign: 'center' }}>
+			<Typography variant="h4" gutterBottom>{title}</Typography>
+			{message && <Typography color="text.secondary" gutterBottom>{message}</Typography>}
+			<Button variant="contained" onClick={() => window.location.reload()}>Reload page</Button>
+		</Box>
 	);
 }
