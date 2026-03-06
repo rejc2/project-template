@@ -18,9 +18,17 @@ export function ErrorPage({ error }: ErrorPageProps) {
 
 	return (
 		<Box sx={{ p: 3, textAlign: 'center' }}>
-			<Typography variant="h4" gutterBottom>{title}</Typography>
-			{message && <Typography color="text.secondary" gutterBottom>{message}</Typography>}
-			<Button variant="contained" onClick={() => window.location.reload()}>Reload page</Button>
+			<Typography variant="h1" gutterBottom>
+				{title}
+			</Typography>
+			{message && (
+				<Typography color="text.secondary" gutterBottom>
+					{message}
+				</Typography>
+			)}
+			<Button variant="contained" onClick={() => window.location.reload()}>
+				Reload page
+			</Button>
 		</Box>
 	);
 }

@@ -2,7 +2,7 @@ import { Box, Typography } from '@mui/material';
 
 export function HomePage() {
 	return (
-		<Box>
+		<Box sx={{ p: 3 }}>
 			<Typography variant="h1">Home</Typography>
 			<Typography>This is the home page</Typography>
 		</Box>
