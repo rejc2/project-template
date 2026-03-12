@@ -1,6 +1,7 @@
 import type { RouteObject } from 'react-router-dom';
-import { HomePage } from './pages/HomePage';
+
 import { RouteErrorBoundary } from './components/RouteErrorBoundary';
+import { HomePage } from './pages/HomePage';
 
 const testRoutes = import.meta.env.DEV ? (await import('./testRoutes')).testRoutes : [];
 
