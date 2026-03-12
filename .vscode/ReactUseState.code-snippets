@@ -25,19 +25,11 @@
 	// 	"exclude": ["**/temp/*.ts"],
 	// 	"description": "Insert test block"
 	// }
-  "React Functional Component": {
-    "prefix": "rfc",
+  "React Use State": {
+    "prefix": "rus",
     "body": [
-      "interface ${1:${TM_FILEPATH/^.*\\/([^\\/]+)\\/index\\.tsx$|^.*\\/([^\\/]+)\\.tsx$/$1$2/}}Props {",
-      "  ${2:value}: ${3:string};",
-      "}",
-      "",
-      "export default function $1({ $2 }: ${1}Props) {",
-      "  return (",
-      "    <>$0</>",
-      "  );",
-      "}"
+      "const [$1, set${1/(.*)/${1:/capitalize}/}] = useState<${2:string}>(${3:''});",
     ],
-    "description": "React Functional Component"
+    "description": "React Use State"
   }
 }
