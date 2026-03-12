@@ -1,4 +1,5 @@
 import { useRouteError } from 'react-router-dom';
+
 import { ErrorPage } from '../pages/ErrorPage';
 
 export function RouteErrorBoundary() {

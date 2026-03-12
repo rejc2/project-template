@@ -1,5 +1,6 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
+
 import { App } from './App';
 
 console.info(`Build date: ${__BUILD_DATE__}, commit: ${__COMMIT_HASH__}`);
