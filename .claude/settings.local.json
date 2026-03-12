@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(yarn add:*)",
+      "Bash(yarn test:*)",
+      "Bash(find /Users/richard/github/sl/project-template/node_modules -path *http-middleware* -name *.ts -o -path *http-middleware* -name *.js)"
+    ]
+  }
+}
