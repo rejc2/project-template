@@ -29,6 +29,9 @@ export default defineConfig(async ({ command }) => {
 				'@': resolve(__dirname, './src'),
 			},
 		},
+		test: {
+			setupFiles: ['./src/mocks/setup.ts'],
+		},
 		build: {
 			rollupOptions: {
 				onwarn(warning: RollupLog, warn: (warning: RollupLog) => void) {
