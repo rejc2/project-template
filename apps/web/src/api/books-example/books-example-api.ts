@@ -1,12 +1,17 @@
+import {
+	GetBookResponseSchema,
+	GetBooksResponseSchema,
+} from '@rejc2/project-template-api-specs/books-example';
 import type {
 	GetBookResponse,
 	GetBooksParams,
 	GetBooksResponse,
-} from './books-example-api-schemas';
-import { GetBookResponseSchema, GetBooksResponseSchema } from './books-example-api-schemas';
+} from '@rejc2/project-template-api-specs/books-example';
+
+import { env } from '@/env';
 
 export async function getBook(id: string): Promise<GetBookResponse> {
-	const response = await fetch(`/api/book/${id}`);
+	const response = await fetch(`${env.apiUrl}/api/book/${id}`);
 	if (!response.ok) {
 		throw new Error(`Failed to fetch book: ${response.statusText}`);
 	}
@@ -17,7 +22,7 @@ export async function getBooks(params?: GetBooksParams): Promise<GetBooksRespons
 	const searchParams = new URLSearchParams();
 	if (params?.first !== undefined) searchParams.set('first', String(params.first));
 	if (params?.after !== undefined) searchParams.set('after', params.after);
-	const response = await fetch(`/api/books?${searchParams}`);
+	const response = await fetch(`${env.apiUrl}/api/books-example?${searchParams}`);
 	if (!response.ok) {
 		throw new Error(`Failed to fetch books: ${response.statusText}`);
 	}
