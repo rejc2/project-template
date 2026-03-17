@@ -1,7 +1,7 @@
+import type { GetBooksParams } from '@rejc2/project-template-api-specs/books-example';
 import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 
 import { getBook, getBooks } from './books-example-api';
-import type { GetBooksParams } from './books-example-api-schemas';
 
 export function useBook(id: string) {
 	return useQuery({

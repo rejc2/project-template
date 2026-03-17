@@ -1,0 +1,21 @@
+{
+  "name": "@rejc2/project-template-api-specs",
+  "packageManager": "yarn@4.12.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./books-example": "./src/books-example-api.ts"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "lint:strict": "yarn lint --max-warnings 0",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@rejc2/project-template-eslint-config": "workspace:*",
+    "typescript": "^5.9.3"
+  }
+}
