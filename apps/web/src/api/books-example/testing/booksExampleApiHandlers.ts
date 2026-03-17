@@ -1,10 +1,10 @@
-import { HttpResponse, http } from 'msw';
-
 import {
 	type GetBookResponse,
 	GetBooksParamsSchema,
 	type GetBooksResponse,
-} from '../books-example-api-schemas';
+} from '@rejc2/project-template-api-specs/books-example';
+import { HttpResponse, http } from 'msw';
+
 import { mockBookData } from './mockBookData';
 
 export const booksExampleApiHandlers = [

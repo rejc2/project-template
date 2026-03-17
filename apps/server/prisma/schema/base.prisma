@@ -1,0 +1,13 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../../src/prisma/generated/client"
+}
+
+generator dmmf {
+  provider = "prisma-mock"
+  output   = "../../src/prisma/generated/dmmf.js"
+}
+
+datasource db {
+  provider = "postgresql"
+}

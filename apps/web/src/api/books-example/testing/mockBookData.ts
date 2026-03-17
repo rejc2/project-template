@@ -1,4 +1,4 @@
-import type { Book } from '../books-example-api-schemas';
+import type { Book } from '@rejc2/project-template-api-specs/books-example';
 
 export const mockBookData: Book[] = [
 	{ id: '1', title: 'Round Ireland with a Fridge', authors: ['Tony Hawks'] },
