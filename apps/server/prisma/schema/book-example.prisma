@@ -1,0 +1,14 @@
+model BookExample {
+  id                 String              @id @default(cuid())
+  title              String
+  createdAt          DateTime            @default(now())
+  updatedAt          DateTime            @updatedAt
+  bookAuthorExamples BookExampleAuthor[]
+}
+
+model BookExampleAuthor {
+  id     String      @id @default(cuid())
+  bookId String
+  book   BookExample @relation(fields: [bookId], references: [id], onDelete: Cascade)
+  name   String
+}
