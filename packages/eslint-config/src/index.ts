@@ -48,7 +48,7 @@ export function getConfig({ tsconfigRootDir }: { tsconfigRootDir: string }): Lin
 			},
 		},
 		{
-			ignores: ['**/node_modules/**', '**/dist/**', '**/build/**'],
+			ignores: ['**/node_modules/**', '**/build/**', '**/dist/**', '**/generated/**'],
 		},
 	];
 }
