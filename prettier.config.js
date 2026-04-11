@@ -4,7 +4,7 @@ export default {
 	tabWidth: 3,
 	useTabs: true,
 
-	plugins: ['@trivago/prettier-plugin-sort-imports'],
+	plugins: ['@trivago/prettier-plugin-sort-imports', 'prettier-plugin-prisma'],
 	importOrder: ['<THIRD_PARTY_MODULES>', '^@/', '^[./]'],
 	importOrderSeparation: true,
 	importOrderSortSpecifiers: true,
