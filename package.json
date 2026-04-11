@@ -10,7 +10,8 @@
     "lint": "yarn workspaces foreach --all run lint",
     "lint:strict": "yarn workspaces foreach --all run lint:strict",
     "test": "yarn workspaces foreach --all run test",
-    "typecheck": "yarn workspaces foreach --all run typecheck"
+    "typecheck": "yarn workspaces foreach --all run typecheck",
+    "validate:yaml": "node scripts/validate-yaml-schemas.js"
   },
   "workspaces": [
     "apps/*",
@@ -19,6 +20,10 @@
   ],
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^6.0.2",
-    "prettier": "^3.8.1"
+    "ajv": "^8.18.0",
+    "ajv-formats": "^3.0.1",
+    "prettier": "^3.8.1",
+    "prettier-plugin-prisma": "^5.0.0",
+    "yaml": "^2.8.2"
   }
 }
