@@ -100,5 +100,5 @@ projects:
           # POSTGRES DB
           # =========================
           - name: project-template-db
-            databaseName: project-template
+            databaseName: projecttemplate
             previewPlan: starter
