@@ -6,7 +6,7 @@ import { getRedis } from '@/redis';
 export const contextMiddleware: RequestHandler = (req, _res, next) => {
 	req.context = {
 		prisma: getPrisma(),
-		redis: getRedis(),
+		redis: getRedis() ?? undefined,
 	};
 
 	next();
