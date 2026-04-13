@@ -1521,20 +1521,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rejc2/project-template-api-specs@workspace:*, @rejc2/project-template-api-specs@workspace:packages/api-specs":
+"@rejc2/projecttemplate-api-specs@workspace:*, @rejc2/projecttemplate-api-specs@workspace:packages/api-specs":
   version: 0.0.0-use.local
-  resolution: "@rejc2/project-template-api-specs@workspace:packages/api-specs"
+  resolution: "@rejc2/projecttemplate-api-specs@workspace:packages/api-specs"
   dependencies:
-    "@rejc2/project-template-eslint-config": "workspace:*"
+    "@rejc2/projecttemplate-eslint-config": "workspace:*"
     eslint: "npm:^10.0.3"
     typescript: "npm:^5.9.3"
     zod: "npm:^4.3.6"
   languageName: unknown
   linkType: soft
 
-"@rejc2/project-template-eslint-config@workspace:*, @rejc2/project-template-eslint-config@workspace:packages/eslint-config":
+"@rejc2/projecttemplate-eslint-config@workspace:*, @rejc2/projecttemplate-eslint-config@workspace:packages/eslint-config":
   version: 0.0.0-use.local
-  resolution: "@rejc2/project-template-eslint-config@workspace:packages/eslint-config"
+  resolution: "@rejc2/projecttemplate-eslint-config@workspace:packages/eslint-config"
   dependencies:
     "@eslint/js": "npm:^9.18.0"
     eslint: "npm:^9.39.2"
@@ -1546,9 +1546,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@rejc2/project-template-monorepo@workspace:.":
+"@rejc2/projecttemplate-monorepo@workspace:.":
   version: 0.0.0-use.local
-  resolution: "@rejc2/project-template-monorepo@workspace:."
+  resolution: "@rejc2/projecttemplate-monorepo@workspace:."
   dependencies:
     "@trivago/prettier-plugin-sort-imports": "npm:^6.0.2"
     ajv: "npm:^8.18.0"
@@ -1559,25 +1559,25 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@rejc2/project-template-playwright-tests@workspace:test-packages/playwright-tests":
+"@rejc2/projecttemplate-playwright-tests@workspace:test-packages/playwright-tests":
   version: 0.0.0-use.local
-  resolution: "@rejc2/project-template-playwright-tests@workspace:test-packages/playwright-tests"
+  resolution: "@rejc2/projecttemplate-playwright-tests@workspace:test-packages/playwright-tests"
   dependencies:
     "@playwright/test": "npm:1.58.0"
-    "@rejc2/project-template-eslint-config": "workspace:*"
+    "@rejc2/projecttemplate-eslint-config": "workspace:*"
     "@types/node": "npm:^22.0.0"
     eslint: "npm:^9.39.2"
     typescript: "npm:^5.9.3"
   languageName: unknown
   linkType: soft
 
-"@rejc2/project-template-server@workspace:apps/server":
+"@rejc2/projecttemplate-server@workspace:apps/server":
   version: 0.0.0-use.local
-  resolution: "@rejc2/project-template-server@workspace:apps/server"
+  resolution: "@rejc2/projecttemplate-server@workspace:apps/server"
   dependencies:
     "@prisma/adapter-pg": "npm:^7.0.0"
     "@prisma/client": "npm:^7.0.0"
-    "@rejc2/project-template-eslint-config": "workspace:*"
+    "@rejc2/projecttemplate-eslint-config": "workspace:*"
     "@types/bcrypt": "npm:^6.0.0"
     "@types/cors": "npm:^2.8.19"
     "@types/express": "npm:^5.0.2"
@@ -1606,16 +1606,16 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@rejc2/project-template-web@workspace:apps/web":
+"@rejc2/projecttemplate-web@workspace:apps/web":
   version: 0.0.0-use.local
-  resolution: "@rejc2/project-template-web@workspace:apps/web"
+  resolution: "@rejc2/projecttemplate-web@workspace:apps/web"
   dependencies:
     "@emotion/react": "npm:^11.14.0"
     "@emotion/styled": "npm:^11.14.1"
     "@mui/icons-material": "npm:^7.3.8"
     "@mui/material": "npm:^7.3.8"
-    "@rejc2/project-template-api-specs": "workspace:*"
-    "@rejc2/project-template-eslint-config": "workspace:*"
+    "@rejc2/projecttemplate-api-specs": "workspace:*"
+    "@rejc2/projecttemplate-eslint-config": "workspace:*"
     "@tanstack/react-query": "npm:^5.90.21"
     "@types/react": "npm:^19"
     "@types/react-dom": "npm:^19"

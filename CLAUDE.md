@@ -4,13 +4,13 @@
 
 Yarn v4 workspaces monorepo.
 
-| Path                              | Package                                    | Purpose                   |
-| --------------------------------- | ------------------------------------------ | ------------------------- |
-| `apps/web/`                       | `@rejc2/project-template-web`              | React SPA (the main app)  |
-| `packages/eslint-config/`         | `@rejc2/project-template-eslint-config`    | Shared ESLint flat config |
-| `test-packages/playwright-tests/` | `@rejc2/project-template-playwright-tests` | E2E tests                 |
-| `package.json`                    | `@rejc2/project-template-monorepo`         | Root — workspace scripts  |
-| `prettier.config.js`              | —                                          | Shared Prettier config    |
+| Path                              | Package                                   | Purpose                   |
+| --------------------------------- | ----------------------------------------- | ------------------------- |
+| `apps/web/`                       | `@rejc2/projecttemplate-web`              | React SPA (the main app)  |
+| `packages/eslint-config/`         | `@rejc2/projecttemplate-eslint-config`    | Shared ESLint flat config |
+| `test-packages/playwright-tests/` | `@rejc2/projecttemplate-playwright-tests` | E2E tests                 |
+| `package.json`                    | `@rejc2/projecttemplate-monorepo`         | Root — workspace scripts  |
+| `prettier.config.js`              | —                                         | Shared Prettier config    |
 
 ## Web app — `apps/web`
 
@@ -69,7 +69,7 @@ Run from repo root (runs across all workspaces) or from `apps/web/`:
 
 ```bash
 # Dev
-yarn workspace @rejc2/project-template-web dev     # start dev server :5173
+yarn workspace @rejc2/projecttemplate-web dev     # start dev server :5173
 
 # Quality
 yarn test          # vitest run (all workspaces)

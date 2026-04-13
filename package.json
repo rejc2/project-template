@@ -1,5 +1,5 @@
 {
-  "name": "@rejc2/project-template-monorepo",
+  "name": "@rejc2/projecttemplate-monorepo",
   "packageManager": "yarn@4.12.0",
   "private": true,
   "type": "module",

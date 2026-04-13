@@ -3,7 +3,7 @@ import {
 	type GetBooksParams,
 	GetBooksParamsSchema,
 	type GetBooksResponse,
-} from '@rejc2/project-template-api-specs/books-example';
+} from '@rejc2/projecttemplate-api-specs/books-example';
 import { type Request, type Response, Router } from 'express';
 
 import { getPrisma } from '@/prisma/db.ts';

@@ -10,7 +10,7 @@ describe('server', () => {
 		const res = await request(app).get('/');
 
 		expect(res.status).toBe(200);
-		expect(res.body).toEqual({ message: 'project-template server is running' });
+		expect(res.body).toEqual({ message: 'projecttemplate server is running' });
 	});
 
 	it('GET /health returns ok status', async () => {

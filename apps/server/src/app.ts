@@ -12,13 +12,19 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 
 export const app = express();
 
-app.use(cors({ origin: process.env.CORS_ORIGIN ?? 'http://localhost:5173', credentials: true }));
+const corsOriginHost = process.env.CORS_ORIGIN_HOST;
+const corsOrigin = process.env.CORS_ORIGIN ?? (corsOriginHost ? `https://${corsOriginHost}` : null);
+if (corsOrigin) {
+	app.use(cors({ origin: corsOrigin, credentials: true }));
+} else {
+	console.warn('Warning: No CORS origin set');
+}
 app.use(express.json());
 app.use(contextMiddleware);
 app.use(sessionMiddleware);
 
 app.get('/', (_req: Request, res: Response) => {
-	res.json({ message: 'project-template server is running' });
+	res.json({ message: 'projecttemplate server is running' });
 });
 
 app.get('/health', (_req: Request, res: Response) => {
