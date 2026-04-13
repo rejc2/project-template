@@ -1,9 +1,12 @@
 model BookExample {
-  id        String                  @id @default(cuid())
-  title     String
-  createdAt DateTime                @default(now())
-  updatedAt DateTime                @updatedAt
-  authors   BookExampleAuthorLink[]
+  id          String                  @id @default(cuid())
+  title       String
+  description String?
+  createdAt   DateTime                @default(now())
+  updatedAt   DateTime                @updatedAt
+  authors     BookExampleAuthorLink[]
+
+  @@index([title])
 }
 
 model AuthorExample {

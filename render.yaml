@@ -23,7 +23,7 @@ projects:
                 - packages/**
 
             buildCommand: corepack enable && yarn install --immutable && yarn workspaces foreach --from @rejc2/projecttemplate-server --recursive --topological run build
-            startCommand: yarn workspace @rejc2/projecttemplate-server prisma:migrate && yarn workspace @rejc2/projecttemplate-server start
+            startCommand: yarn workspace @rejc2/projecttemplate-server prisma:migrate && yarn workspace @rejc2/projecttemplate-server prisma:seed && yarn workspace @rejc2/projecttemplate-server start
 
             healthCheckPath: /health
 
@@ -46,11 +46,11 @@ projects:
                 sync: false
               - key: NODE_ENV
                 value: production
-              - key: REDIS_URL
-                fromService:
-                  name: projecttemplate-redis
-                  property: connectionString
-                  type: redis
+              # - key: REDIS_URL
+              #   fromService:
+              #     name: projecttemplate-redis
+              #     property: connectionString
+              #     type: redis
               - key: SESSION_SECRET
                 generateValue: true
 
@@ -98,10 +98,11 @@ projects:
           # =========================
           # REDIS
           # =========================
-          - type: redis
-            name: projecttemplate-redis
-            plan: free
-            ipAllowList: [] # allow internal connections only
+          # (Disabled due to limit of 1 free Redis instance)
+          # - type: redis
+          #   name: projecttemplate-redis
+          #   plan: free
+          #   ipAllowList: [] # allow internal connections only
 
         databases:
           # =========================
