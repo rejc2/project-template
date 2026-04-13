@@ -8,6 +8,6 @@ export type AuthenticatedUser = {
 
 export interface Context {
 	prisma: PrismaClient;
-	redis: Redis;
+	redis?: Redis;
 	user?: AuthenticatedUser;
 }
