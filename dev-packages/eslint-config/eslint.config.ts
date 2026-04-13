@@ -1,8 +1,7 @@
-import { getConfig } from '@rejc2/projecttemplate-eslint-config';
+import { getConfig } from './src/index';
 
 const config = getConfig({
 	tsconfigRootDir: import.meta.dirname,
-	includeReact: true,
 });
 
 export default config;

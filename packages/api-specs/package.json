@@ -7,8 +7,8 @@
     "./books-example": "./src/books-example-api.ts"
   },
   "scripts": {
-    "__lint": "eslint .",
-    "__lint:strict": "yarn lint --max-warnings 0",
+    "lint": "eslint .",
+    "lint:strict": "yarn lint --max-warnings 0",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {

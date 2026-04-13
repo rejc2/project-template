@@ -1,5 +1,6 @@
 import eslint from '@eslint/js';
 import type { Linter } from 'eslint';
+import importPlugin from 'eslint-plugin-import';
 import reactPlugin from 'eslint-plugin-react';
 import reactHooksPlugin from 'eslint-plugin-react-hooks';
 import tseslint from 'typescript-eslint';
@@ -7,15 +8,24 @@ import tseslint from 'typescript-eslint';
 /**
  * Shared ESLint configuration for TypeScript and React projects.
  */
-export function getConfig({ tsconfigRootDir }: { tsconfigRootDir: string }): Linter.Config[] {
+export function getConfig({
+	tsconfigRootDir,
+	includeReact = false,
+}: {
+	tsconfigRootDir: string;
+	includeReact?: boolean;
+}): Linter.Config[] {
 	return [
 		eslint.configs.recommended,
 		...tseslint.configs.recommended,
 		{
 			files: ['**/*.{ts,tsx}'],
 			plugins: {
-				react: reactPlugin,
-				'react-hooks': reactHooksPlugin,
+				import: importPlugin,
+				...(includeReact && {
+					react: reactPlugin,
+					'react-hooks': reactHooksPlugin,
+				}),
 			},
 			languageOptions: {
 				parserOptions: {
@@ -31,13 +41,15 @@ export function getConfig({ tsconfigRootDir }: { tsconfigRootDir: string }): Lin
 				},
 			},
 			rules: {
-				// React rules
-				...reactPlugin.configs.recommended.rules,
-				...reactPlugin.configs['jsx-runtime'].rules,
+				...(includeReact && {
+					// React rules
+					...reactPlugin.configs.recommended.rules,
+					...reactPlugin.configs['jsx-runtime'].rules,
 
-				// React Hooks rules
-				'react-hooks/rules-of-hooks': 'error',
-				'react-hooks/exhaustive-deps': 'error',
+					// React Hooks rules
+					'react-hooks/rules-of-hooks': 'error',
+					'react-hooks/exhaustive-deps': 'error',
+				}),
 
 				// TypeScript rules
 				'@typescript-eslint/no-unused-vars': [
@@ -45,10 +57,19 @@ export function getConfig({ tsconfigRootDir }: { tsconfigRootDir: string }): Lin
 					{ argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
 				],
 				'@typescript-eslint/consistent-type-imports': 'warn',
+
+				'import/no-extraneous-dependencies': 'warn',
 			},
 		},
 		{
-			ignores: ['**/node_modules/**', '**/build/**', '**/dist/**', '**/generated/**'],
+			ignores: [
+				'**/node_modules/**',
+				'**/build/**',
+				'**/dist/**',
+				'**/generated/**',
+				'**/playwright-report/**',
+				'**/test-results/**',
+			],
 		},
 	];
 }

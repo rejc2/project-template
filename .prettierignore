@@ -4,6 +4,7 @@
 # Include source files:
 !/.github
 !/apps
+!/dev-packages
 !/packages
 !/test-packages
 
@@ -19,3 +20,5 @@
 # Exclude generated files:
 generated
 mockServiceWorker.js
+test-results
+playwright-report

@@ -15,6 +15,7 @@
   },
   "workspaces": [
     "apps/*",
+    "dev-packages/*",
     "packages/*",
     "test-packages/*"
   ],
