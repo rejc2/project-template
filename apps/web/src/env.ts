@@ -1,3 +1,5 @@
+const apiHost = import.meta.env['VITE_API_HOST'];
+
 export const env = {
-	apiUrl: import.meta.env['VITE_API_URL'] ?? '',
+	apiUrl: apiHost ? `https://${apiHost}` : '',
 };
