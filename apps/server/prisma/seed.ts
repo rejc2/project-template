@@ -1,6 +1,7 @@
 import { PrismaPg } from '@prisma/adapter-pg';
 
 import { PrismaClient } from '../src/prisma/generated/client/client.js';
+import { seedBooks } from './seed-data.js';
 
 try {
 	process.loadEnvFile('.env');
@@ -12,75 +13,60 @@ const prisma = new PrismaClient({
 	adapter: new PrismaPg({ connectionString: process.env['DATABASE_URL'] }),
 });
 
-const books = [
-	{ title: 'The Hobbit', authors: ['J.R.R. Tolkien'] },
-	{ title: 'The Lord of the Rings', authors: ['J.R.R. Tolkien'] },
-	{ title: 'Dune', authors: ['Frank Herbert'] },
-	{ title: 'Dune Messiah', authors: ['Frank Herbert'] },
-	{ title: 'Neuromancer', authors: ['William Gibson'] },
-	{ title: 'Good Omens', authors: ['Terry Pratchett', 'Neil Gaiman'] },
-	{ title: 'The Name of the Wind', authors: ['Patrick Rothfuss'] },
-	{ title: 'The Way of Kings', authors: ['Brandon Sanderson'] },
-	{ title: 'Foundation', authors: ['Isaac Asimov'] },
-	{ title: 'The Hitchhiker’s Guide to the Galaxy', authors: ['Douglas Adams'] },
-	{ title: 'Snow Crash', authors: ['Neal Stephenson'] },
-	{ title: 'Hyperion', authors: ['Dan Simmons'] },
-	{ title: 'The Fall of Hyperion', authors: ['Dan Simmons'] },
-	{ title: 'A Fire Upon the Deep', authors: ['Vernor Vinge'] },
-	{ title: 'The Left Hand of Darkness', authors: ['Ursula K. Le Guin'] },
-	{ title: 'The Dispossessed', authors: ['Ursula K. Le Guin'] },
-	{ title: 'Ender’s Game', authors: ['Orson Scott Card'] },
-	{ title: 'Speaker for the Dead', authors: ['Orson Scott Card'] },
-	{ title: 'Childhood’s End', authors: ['Arthur C. Clarke'] },
-	{ title: '2001: A Space Odyssey', authors: ['Arthur C. Clarke'] },
-	{ title: 'Rendezvous with Rama', authors: ['Arthur C. Clarke'] },
-	{ title: 'The Martian Chronicles', authors: ['Ray Bradbury'] },
-	{ title: 'Fahrenheit 451', authors: ['Ray Bradbury'] },
-	{ title: 'Slaughterhouse-Five', authors: ['Kurt Vonnegut'] },
-	{ title: 'The Stars My Destination', authors: ['Alfred Bester'] },
-	{ title: 'Lord of Light', authors: ['Roger Zelazny'] },
-	{ title: 'The Wizard of Earthsea', authors: ['Ursula K. Le Guin'] },
-	{ title: 'American Gods', authors: ['Neil Gaiman'] },
-	{ title: 'Stardust', authors: ['Neil Gaiman'] },
-	{ title: 'The Colour of Magic', authors: ['Terry Pratchett'] },
-	{ title: 'Small Gods', authors: ['Terry Pratchett'] },
-	{ title: 'Mort', authors: ['Terry Pratchett'] },
-	{ title: 'The Final Empire', authors: ['Brandon Sanderson'] },
-	{ title: 'The Well of Ascension', authors: ['Brandon Sanderson'] },
-	{ title: 'Words of Radiance', authors: ['Brandon Sanderson'] },
-	{ title: 'The Wise Man’s Fear', authors: ['Patrick Rothfuss'] },
-	{ title: 'The Lion, the Witch and the Wardrobe', authors: ['C.S. Lewis'] },
-	{ title: 'A Wizard of Earthsea', authors: ['Ursula K. Le Guin'] },
-	{ title: 'The Two Towers', authors: ['J.R.R. Tolkien'] },
-	{ title: 'The Return of the King', authors: ['J.R.R. Tolkien'] },
-];
+// Authors: find existing, insert missing
+const allAuthorNames = [...new Set(seedBooks.flatMap((b) => b.authors))];
 
-// Collect all unique author names and upsert them first
-const allAuthorNames = [...new Set(books.flatMap((b) => b.authors))];
-const authorByName = new Map<string, string>();
+const existingAuthors = await prisma.authorExample.findMany({
+	where: { name: { in: allAuthorNames } },
+	select: { id: true, name: true },
+});
+const existingAuthorNames = new Set(existingAuthors.map((a) => a.name));
+const missingAuthorNames = allAuthorNames.filter((n) => !existingAuthorNames.has(n));
 
-for (const name of allAuthorNames) {
-	const author = await prisma.authorExample.upsert({
-		where: { name },
-		update: {},
-		create: { name },
-	});
-	authorByName.set(name, author.id);
+const newAuthors =
+	missingAuthorNames.length > 0
+		? await prisma.authorExample.createManyAndReturn({
+				data: missingAuthorNames.map((name) => ({ name })),
+				select: { id: true, name: true },
+			})
+		: [];
+for (const { name } of newAuthors) {
+	console.info(`Seeded author: ${name}`);
 }
 
-for (const { title, authors } of books) {
-	const existing = await prisma.bookExample.findFirst({ where: { title } });
-	if (existing) continue;
+const authorByName = new Map([...existingAuthors, ...newAuthors].map((a) => [a.name, a.id]));
 
-	await prisma.bookExample.create({
-		data: {
-			title,
-			authors: {
-				create: authors.map((name) => ({ authorId: authorByName.get(name)! })),
-			},
-		},
+// Books: find existing, insert missing
+const allTitles = seedBooks.map((b) => b.title);
+const existingTitles = new Set(
+	(
+		await prisma.bookExample.findMany({
+			where: { title: { in: allTitles } },
+			select: { title: true },
+		})
+	).map((b) => b.title),
+);
+const missingBooks = seedBooks.filter((b) => !existingTitles.has(b.title));
+
+if (missingBooks.length > 0) {
+	const newBooks = await prisma.bookExample.createManyAndReturn({
+		data: missingBooks.map(({ title, description }) => ({ title, description })),
+		select: { id: true, title: true },
 	});
-	console.info(`Seeded: ${title}`);
+	const bookIdByTitle = new Map(newBooks.map((b) => [b.title, b.id]));
+
+	await prisma.bookExampleAuthorLink.createMany({
+		data: missingBooks.flatMap(({ title, authors }) =>
+			authors.map((name) => ({
+				bookId: bookIdByTitle.get(title)!,
+				authorId: authorByName.get(name)!,
+			})),
+		),
+	});
+
+	for (const { title } of newBooks) {
+		console.info(`Seeded book: ${title}`);
+	}
 }
 
 await prisma.$disconnect();
