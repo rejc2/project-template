@@ -1,14 +1,18 @@
 import { defineConfig, devices } from '@playwright/test';
 
+const isCI = !!process.env.CI;
+const serverPort = 3001;
+const webPort = 5174;
+
 export default defineConfig({
 	testDir: './tests',
 	fullyParallel: true,
-	forbidOnly: !!process.env.CI,
-	retries: process.env.CI ? 2 : 0,
-	workers: process.env.CI ? 1 : undefined,
+	forbidOnly: isCI,
+	retries: isCI ? 2 : 0,
+	workers: isCI ? 1 : undefined,
 	reporter: 'html',
 	use: {
-		baseURL: 'http://localhost:5173',
+		baseURL: `http://localhost:${webPort}`,
 		trace: 'on-first-retry',
 	},
 	projects: [
@@ -21,9 +25,32 @@ export default defineConfig({
 			use: { ...devices['Pixel 7'] },
 		},
 	],
-	webServer: {
-		command: 'yarn workspace @rejc2/projecttemplate-web dev',
-		url: 'http://localhost:5173',
-		reuseExistingServer: !process.env.CI,
-	},
+	webServer: [
+		{
+			// DB (postgres + redis):
+			command: 'docker compose -f ../../apps/server/docker-compose.yml up -d',
+			reuseExistingServer: !isCI,
+		},
+		{
+			// BE server:
+			command: 'yarn workspace @rejc2/projecttemplate-server start',
+			url: `http://localhost:${serverPort}/health`,
+			reuseExistingServer: !isCI,
+			env: {
+				PORT: String(serverPort),
+				CORS_ORIGIN: `http://localhost:${webPort}`,
+			},
+		},
+		{
+			// Web FE:
+			command: 'yarn workspace @rejc2/projecttemplate-web dev',
+			url: `http://localhost:${webPort}`,
+			reuseExistingServer: !isCI,
+			env: {
+				PORT: String(webPort),
+				VITE_API_URL: `http://localhost:${serverPort}`,
+				VITE_MOCK_API_HANDLERS: '',
+			},
+		},
+	],
 });
