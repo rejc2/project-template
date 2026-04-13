@@ -31,6 +31,11 @@ projects:
             #   - api.project-template.app
 
             envVars:
+              - key: CORS_ORIGIN_HOST
+                fromService:
+                  name: project-template-web
+                  property: host
+                  type: web
               - key: DATABASE_URL
                 fromDatabase:
                   name: project-template-db
@@ -43,9 +48,9 @@ projects:
                 value: production
               - key: REDIS_URL
                 fromService:
-                  type: redis
                   name: project-template-redis
                   property: connectionString
+                  type: redis
               - key: SESSION_SECRET
                 generateValue: true
 
@@ -84,8 +89,8 @@ projects:
               - key: VITE_API_HOST
                 fromService:
                   name: project-template-server
-                  type: web
                   property: host
+                  type: web
 
             previews:
               generation: manual
@@ -105,4 +110,4 @@ projects:
           - name: project-template-db
             databaseName: projecttemplate
             plan: free
-            previewPlan: starter
+            previewPlan: free
