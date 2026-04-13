@@ -1,4 +1,4 @@
-import { getConfig } from '@rejc2/project-template-eslint-config';
+import { getConfig } from '@rejc2/projecttemplate-eslint-config';
 
 const config = getConfig({ tsconfigRootDir: import.meta.dirname });
 

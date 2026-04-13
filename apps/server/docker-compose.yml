@@ -7,9 +7,9 @@ services:
     ports:
       - "5434:5432"
     environment:
-      POSTGRES_USER: project-template
-      POSTGRES_PASSWORD: project-template
-      POSTGRES_DB: project-template
+      POSTGRES_USER: projecttemplate
+      POSTGRES_PASSWORD: projecttemplate
+      POSTGRES_DB: projecttemplate
     volumes:
       - project-template_pgdata:/var/lib/postgresql/data
 
@@ -19,8 +19,8 @@ services:
     ports:
       - "5435:5432"
     environment:
-      POSTGRES_USER: project-template
-      POSTGRES_PASSWORD: project-template
+      POSTGRES_USER: projecttemplate
+      POSTGRES_PASSWORD: projecttemplate
       POSTGRES_DB: project-template_shadow
 
   redis:

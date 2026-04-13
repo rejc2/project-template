@@ -1,5 +1,5 @@
 {
-  "name": "@rejc2/project-template-playwright-tests",
+  "name": "@rejc2/projecttemplate-playwright-tests",
   "version": "0.0.1",
   "private": true,
   "type": "module",
@@ -14,7 +14,7 @@
   },
   "devDependencies": {
     "@playwright/test": "1.58.0",
-    "@rejc2/project-template-eslint-config": "workspace:*",
+    "@rejc2/projecttemplate-eslint-config": "workspace:*",
     "@types/node": "^22.0.0",
     "eslint": "^9.39.2",
     "typescript": "^5.9.3"

@@ -104,7 +104,7 @@ jobs:
         run: yarn install --immutable
 
       - name: Run Playwright tests
-        run: yarn workspace @rejc2/project-template-playwright-tests playwright
+        run: yarn workspace @rejc2/projecttemplate-playwright-tests playwright
 
       - name: Upload Playwright report
         uses: actions/upload-artifact@v4

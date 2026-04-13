@@ -1,5 +1,5 @@
 {
-  "name": "@rejc2/project-template-eslint-config",
+  "name": "@rejc2/projecttemplate-eslint-config",
   "packageManager": "yarn@4.12.0",
   "private": true,
   "type": "module",

@@ -2,7 +2,7 @@ import {
 	type GetBookResponse,
 	GetBooksParamsSchema,
 	type GetBooksResponse,
-} from '@rejc2/project-template-api-specs/books-example';
+} from '@rejc2/projecttemplate-api-specs/books-example';
 import { HttpResponse, http } from 'msw';
 
 import { mockBookData } from './mockBookData';

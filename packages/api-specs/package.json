@@ -1,5 +1,5 @@
 {
-  "name": "@rejc2/project-template-api-specs",
+  "name": "@rejc2/projecttemplate-api-specs",
   "packageManager": "yarn@4.12.0",
   "private": true,
   "type": "module",
@@ -15,7 +15,7 @@
     "zod": "^4.3.6"
   },
   "devDependencies": {
-    "@rejc2/project-template-eslint-config": "workspace:*",
+    "@rejc2/projecttemplate-eslint-config": "workspace:*",
     "eslint": "^10.0.3",
     "typescript": "^5.9.3"
   }
