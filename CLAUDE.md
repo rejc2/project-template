@@ -4,13 +4,13 @@
 
 Yarn v4 workspaces monorepo.
 
-| Path                              | Package                                   | Purpose                   |
-| --------------------------------- | ----------------------------------------- | ------------------------- |
-| `apps/web/`                       | `@rejc2/projecttemplate-web`              | React SPA (the main app)  |
-| `packages/eslint-config/`         | `@rejc2/projecttemplate-eslint-config`    | Shared ESLint flat config |
-| `test-packages/playwright-tests/` | `@rejc2/projecttemplate-playwright-tests` | E2E tests                 |
-| `package.json`                    | `@rejc2/projecttemplate-monorepo`         | Root — workspace scripts  |
-| `prettier.config.js`              | —                                         | Shared Prettier config    |
+| Path                            | Package                                 | Purpose                   |
+| ------------------------------- | --------------------------------------- | ------------------------- |
+| `apps/web/`                     | `@rejc2/projecttemplate-web`            | React SPA (the main app)  |
+| `packages/eslint-config/`       | `@rejc2/projecttemplate-eslint-config`  | Shared ESLint flat config |
+| `test-packages/playwright-e2e/` | `@rejc2/projecttemplate-playwright-e2e` | E2E tests                 |
+| `package.json`                  | `@rejc2/projecttemplate-monorepo`       | Root — workspace scripts  |
+| `prettier.config.js`            | —                                       | Shared Prettier config    |
 
 ## Web app — `apps/web`
 
@@ -78,7 +78,7 @@ yarn lint          # eslint (all workspaces)
 yarn lint:strict   # eslint --max-warnings 0
 yarn format        # prettier --write
 
-# E2E (from test-packages/playwright-tests/)
+# E2E (from test-packages/playwright-e2e/)
 yarn playwright            # headless
 yarn playwright:headed     # headed
 yarn playwright:ui         # Playwright UI mode

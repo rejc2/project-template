@@ -82,8 +82,8 @@ jobs:
       - name: Check formatting
         run: yarn format:check
 
-  playwright-tests:
-    name: "Playwright Tests"
+  playwright-e2e:
+    name: "Playwright E2E Tests"
     runs-on: ubuntu-latest
     container:
       image: mcr.microsoft.com/playwright:v1.58.0-noble
@@ -104,12 +104,12 @@ jobs:
         run: yarn install --immutable
 
       - name: Run Playwright tests
-        run: yarn workspace @rejc2/projecttemplate-playwright-tests playwright
+        run: yarn workspace @rejc2/projecttemplate-playwright-e2e playwright
 
       - name: Upload Playwright report
         uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with:
           name: playwright-report
-          path: test-packages/playwright-tests/playwright-report/
+          path: test-packages/playwright-e2e/playwright-report/
           retention-days: 30
