@@ -46,11 +46,11 @@ projects:
                 sync: false
               - key: NODE_ENV
                 value: production
-              - key: REDIS_URL
-                fromService:
-                  name: projecttemplate-redis
-                  property: connectionString
-                  type: redis
+              # - key: REDIS_URL
+              #   fromService:
+              #     name: projecttemplate-redis
+              #     property: connectionString
+              #     type: redis
               - key: SESSION_SECRET
                 generateValue: true
 
@@ -98,10 +98,11 @@ projects:
           # =========================
           # REDIS
           # =========================
-          - type: redis
-            name: projecttemplate-redis
-            plan: free
-            ipAllowList: [] # allow internal connections only
+          # (Disabled due to limit of 1 free Redis instance)
+          # - type: redis
+          #   name: projecttemplate-redis
+          #   plan: free
+          #   ipAllowList: [] # allow internal connections only
 
         databases:
           # =========================
