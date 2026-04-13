@@ -14,6 +14,7 @@ projects:
           - name: project-template-server
             type: web
             runtime: node
+            plan: free
             autoDeployTrigger: "commit"
 
             buildFilter:
@@ -101,4 +102,5 @@ projects:
           # =========================
           - name: project-template-db
             databaseName: projecttemplate
+            plan: free
             previewPlan: starter
