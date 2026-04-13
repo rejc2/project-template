@@ -4,7 +4,9 @@ import { readFile } from 'fs/promises';
 import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
 
+import { authRouter } from './auth/authRouter.ts';
 import { contextMiddleware } from './context/contextMiddleware.ts';
+import { healthRouter } from './health/healthRouter.ts';
 import { booksExampleRouter } from './routes/booksExampleRouter.ts';
 import { sessionMiddleware } from './session/sessionMiddleware.ts';
 
@@ -27,9 +29,11 @@ app.get('/', (_req: Request, res: Response) => {
 	res.json({ message: 'projecttemplate server is running' });
 });
 
-app.get('/health', (_req: Request, res: Response) => {
-	res.json({ status: 'ok' });
-});
+// app.get('/health', (_req: Request, res: Response) => {
+// 	res.json({ status: 'ok' });
+// });
+
+app.use('/health', healthRouter);
 
 app.get('/version', async (_req: Request, res: Response) => {
 	try {
@@ -42,6 +46,8 @@ app.get('/version', async (_req: Request, res: Response) => {
 
 const apiRouter = Router();
 app.use('/api', apiRouter);
+
+apiRouter.use('/auth', authRouter);
 
 apiRouter.use('/books-example', booksExampleRouter);
 

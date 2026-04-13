@@ -19,9 +19,11 @@
     "typecheck": "tsc --noEmit && tsc --noEmit -p tsconfig.seed.json"
   },
   "dependencies": {
+    "@better-auth/prisma-adapter": "^1.6.2",
     "@prisma/adapter-pg": "^7.0.0",
     "@prisma/client": "^7.0.0",
     "bcrypt": "^6.0.0",
+    "better-auth": "^1.6.2",
     "connect-redis": "^9.0.0",
     "cors": "^2.8.6",
     "express": "^5.1.0",
@@ -42,6 +44,7 @@
     "@types/supertest": "^6.0.3",
     "eslint": "^9.39.2",
     "ioredis-mock": "^8.13.1",
+    "nock": "^14.0.12",
     "prisma": "^7.0.0",
     "prisma-mock": "^1.1.0",
     "supertest": "^7.1.0",
