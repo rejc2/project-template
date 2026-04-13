@@ -11,7 +11,7 @@ import type {
 import { env } from '@/env';
 
 export async function getBook(id: string): Promise<GetBookResponse> {
-	const response = await fetch(`${env.apiUrl}/api/book/${id}`);
+	const response = await fetch(`${env.apiUrl}/api/book/${encodeURIComponent(id)}`);
 	if (!response.ok) {
 		throw new Error(`Failed to fetch book: ${response.statusText}`);
 	}
