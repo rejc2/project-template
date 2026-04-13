@@ -78,11 +78,11 @@ projects:
             envVars:
               - key: SKIP_INSTALL_DEPS
                 value: "true"
-              - key: VITE_API_URL
+              - key: VITE_API_HOST
                 fromService:
                   name: project-template-server
                   type: web
-                  property: url
+                  property: host
 
             previews:
               generation: manual
