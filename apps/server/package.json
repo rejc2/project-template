@@ -11,7 +11,7 @@
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate deploy",
     "prisma:seed": "prisma db seed",
-    "start": "yarn build:info && tsx --env-file=.env src/index.ts",
+    "start": "yarn build:info && tsx src/index.ts",
     "lint": "eslint .",
     "lint:strict": "yarn lint --max-warnings 0",
     "test": "vitest run",
