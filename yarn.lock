@@ -1559,9 +1559,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@rejc2/projecttemplate-playwright-tests@workspace:test-packages/playwright-tests":
+"@rejc2/projecttemplate-playwright-e2e@workspace:test-packages/playwright-e2e":
   version: 0.0.0-use.local
-  resolution: "@rejc2/projecttemplate-playwright-tests@workspace:test-packages/playwright-tests"
+  resolution: "@rejc2/projecttemplate-playwright-e2e@workspace:test-packages/playwright-e2e"
   dependencies:
     "@playwright/test": "npm:1.58.0"
     "@rejc2/projecttemplate-eslint-config": "workspace:*"
