@@ -9,9 +9,26 @@ jobs:
   playwright-e2e:
     name: "Playwright E2E Tests"
     runs-on: ubuntu-latest
-    container:
-      image: mcr.microsoft.com/playwright:v1.58.0-noble
-      options: --user 1001
+
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: projecttemplate
+          POSTGRES_PASSWORD: projecttemplate
+          POSTGRES_DB: projecttemplate
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd="pg_isready -U projecttemplate"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
+
+      redis:
+        image: redis:7-alpine
+        ports:
+          - 6379:6379
 
     steps:
       - uses: actions/checkout@v4
@@ -27,8 +44,17 @@ jobs:
       - name: Install dependencies
         run: yarn install --immutable
 
-      - name: Run Playwright tests
-        run: yarn workspace @rejc2/projecttemplate-playwright-e2e playwright
+      - name: Run Playwright tests (container)
+        run: |
+          docker run --rm \
+            --network host \
+            --user $(id -u):$(id -g) \
+            -e DATABASE_URL=postgres://projecttemplate:projecttemplate@localhost:5432/projecttemplate \
+            -e REDIS_URL=redis://localhost:6379 \
+            -v ${{ github.workspace }}:/work \
+            -w /work \
+            mcr.microsoft.com/playwright:v1.58.0-noble \
+            bash -c "corepack enable && yarn install && yarn build && yarn workspace @rejc2/projecttemplate-playwright-e2e playwright"
 
       - name: Upload Playwright report
         uses: actions/upload-artifact@v4
