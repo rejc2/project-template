@@ -60,10 +60,10 @@ jobs:
           echo "SHADOW_DATABASE_URL=postgresql://postgres:postgres@localhost:5433/test_db_shadow" >> $GITHUB_ENV
 
       - name: Generate Prisma Client
-        run: yarn workspace @rejc2/project-template-server prisma:generate
+        run: yarn workspace @rejc2/projecttemplate-server prisma:generate
 
       - name: Run Migrations
-        run: yarn workspace @rejc2/project-template-server prisma:migrate
+        run: yarn workspace @rejc2/projecttemplate-server prisma:migrate
 
       - name: Check for schema drift
         working-directory: apps/server

@@ -1,5 +1,5 @@
 {
-  "name": "@rejc2/project-template-web",
+  "name": "@rejc2/projecttemplate-web",
   "packageManager": "yarn@4.12.0",
   "private": true,
   "type": "module",
@@ -18,7 +18,7 @@
     "@emotion/styled": "^11.14.1",
     "@mui/icons-material": "^7.3.8",
     "@mui/material": "^7.3.8",
-    "@rejc2/project-template-api-specs": "workspace:*",
+    "@rejc2/projecttemplate-api-specs": "workspace:*",
     "@tanstack/react-query": "^5.90.21",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
@@ -30,7 +30,7 @@
     "zustand": "^5.0.11"
   },
   "devDependencies": {
-    "@rejc2/project-template-eslint-config": "workspace:*",
+    "@rejc2/projecttemplate-eslint-config": "workspace:*",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9.39.2",

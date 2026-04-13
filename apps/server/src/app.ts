@@ -24,7 +24,7 @@ app.use(contextMiddleware);
 app.use(sessionMiddleware);
 
 app.get('/', (_req: Request, res: Response) => {
-	res.json({ message: 'project-template server is running' });
+	res.json({ message: 'projecttemplate server is running' });
 });
 
 app.get('/health', (_req: Request, res: Response) => {

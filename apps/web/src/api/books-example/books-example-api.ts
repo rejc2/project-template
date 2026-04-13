@@ -1,12 +1,12 @@
 import {
 	GetBookResponseSchema,
 	GetBooksResponseSchema,
-} from '@rejc2/project-template-api-specs/books-example';
+} from '@rejc2/projecttemplate-api-specs/books-example';
 import type {
 	GetBookResponse,
 	GetBooksParams,
 	GetBooksResponse,
-} from '@rejc2/project-template-api-specs/books-example';
+} from '@rejc2/projecttemplate-api-specs/books-example';
 
 import { env } from '@/env';
 

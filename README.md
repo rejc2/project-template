@@ -11,6 +11,6 @@ To develop locally:
 
 ```bash
 docker compose up -d
-yarn workspace @rejc2/project-template-server exec prisma migrate dev --name init
-yarn workspace @rejc2/project-template-server dev
+yarn workspace @rejc2/projecttemplate-server exec prisma migrate dev --name init
+yarn workspace @rejc2/projecttemplate-server dev
 ```

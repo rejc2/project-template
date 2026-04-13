@@ -22,7 +22,7 @@ export default defineConfig({
 		},
 	],
 	webServer: {
-		command: 'yarn workspace @rejc2/project-template-web dev',
+		command: 'yarn workspace @rejc2/projecttemplate-web dev',
 		url: 'http://localhost:5173',
 		reuseExistingServer: !process.env.CI,
 	},

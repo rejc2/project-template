@@ -1,7 +1,7 @@
 import {
 	type GetBookResponse,
 	type GetBooksResponse,
-} from '@rejc2/project-template-api-specs/books-example';
+} from '@rejc2/projecttemplate-api-specs/books-example';
 import createPrismaMock from 'prisma-mock/client';
 import request from 'supertest';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
