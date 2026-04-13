@@ -110,4 +110,4 @@ projects:
           - name: projecttemplate-db
             databaseName: projecttemplate
             plan: free
-            previewPlan: free
+            previewPlan: starter
