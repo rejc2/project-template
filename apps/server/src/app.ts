@@ -5,6 +5,7 @@ import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
 
 import { contextMiddleware } from './context/contextMiddleware.ts';
+import { healthRouter } from './health/healthRouter.ts';
 import { booksExampleRouter } from './routes/booksExampleRouter.ts';
 import { sessionMiddleware } from './session/sessionMiddleware.ts';
 
@@ -12,8 +13,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 
 export const app = express();
 
-const corsOriginHost = process.env.CORS_ORIGIN_HOST;
-const corsOrigin = process.env.CORS_ORIGIN ?? (corsOriginHost ? `https://${corsOriginHost}` : null);
+const corsOrigin = process.env.CORS_ORIGIN;
 if (corsOrigin) {
 	app.use(cors({ origin: corsOrigin, credentials: true }));
 } else {
@@ -27,9 +27,11 @@ app.get('/', (_req: Request, res: Response) => {
 	res.json({ message: 'projecttemplate server is running' });
 });
 
-app.get('/health', (_req: Request, res: Response) => {
-	res.json({ status: 'ok' });
-});
+// app.get('/health', (_req: Request, res: Response) => {
+// 	res.json({ status: 'ok' });
+// });
+
+app.use('/health', healthRouter);
 
 app.get('/version', async (_req: Request, res: Response) => {
 	try {
