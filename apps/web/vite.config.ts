@@ -20,6 +20,9 @@ export default defineConfig(async ({ command }) => {
 	}
 
 	return {
+		server: {
+			port: process.env.PORT ? Number(process.env.PORT) : undefined,
+		},
 		define: {
 			__BUILD_DATE__: JSON.stringify(command === 'build' ? new Date().toISOString() : null),
 			__COMMIT_HASH__: JSON.stringify(commitHash),
