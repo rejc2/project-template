@@ -13,6 +13,26 @@ jobs:
       image: mcr.microsoft.com/playwright:v1.58.0-noble
       options: --user 1001
 
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: projecttemplate
+          POSTGRES_PASSWORD: projecttemplate
+          POSTGRES_DB: projecttemplate
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd="pg_isready -U projecttemplate"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
+
+      redis:
+        image: redis:7-alpine
+        ports:
+          - 6379:6379
+
     steps:
       - uses: actions/checkout@v4
 
@@ -27,8 +47,14 @@ jobs:
       - name: Install dependencies
         run: yarn install --immutable
 
+      - name: Build
+        run: yarn build
+
       - name: Run Playwright tests
         run: yarn workspace @rejc2/projecttemplate-playwright-e2e playwright
+        env:
+          DATABASE_URL: "postgres://projecttemplate:projecttemplate@localhost:5432/projecttemplate"
+          REDIS_URL: "redis://localhost:6379"
 
       - name: Upload Playwright report
         uses: actions/upload-artifact@v4
