@@ -4,6 +4,7 @@ import { readFile } from 'fs/promises';
 import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
 
+import { authRouter } from './auth/authRouter.ts';
 import { contextMiddleware } from './context/contextMiddleware.ts';
 import { healthRouter } from './health/healthRouter.ts';
 import { booksExampleRouter } from './routes/booksExampleRouter.ts';
@@ -40,6 +41,8 @@ app.get('/version', async (_req: Request, res: Response) => {
 
 const apiRouter = Router();
 app.use('/api', apiRouter);
+
+apiRouter.use('/auth', authRouter);
 
 apiRouter.use('/books-example', booksExampleRouter);
 
