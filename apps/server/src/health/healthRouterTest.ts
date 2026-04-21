@@ -6,13 +6,16 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { mockDeep } from 'vitest-mock-extended';
 
 import { app } from '@/app.ts';
+import { getBetterAuth } from '@/auth/getBetterAuth';
 import { Prisma, type PrismaClient } from '@/prisma/generated/client/client';
 
 let db: PrismaClient;
 let redis: InstanceType<typeof redisMock>;
+let auth: ReturnType<typeof getBetterAuth<never>>;
 
 vi.mock('@/prisma/db', () => ({ getPrisma: () => db }));
 vi.mock('@/redis', () => ({ getRedis: () => redis }));
+vi.mock('@/auth/getAuth', () => ({ getAuth: () => auth }));
 
 describe('healthRouter', () => {
 	beforeEach(() => {
@@ -21,6 +24,8 @@ describe('healthRouter', () => {
 			mockClient: mockDeep(),
 		});
 		redis = new redisMock();
+
+		auth = getBetterAuth({ getPrisma: () => db, getRedis: () => redis });
 	});
 
 	it('GET /health returns ok status', async () => {

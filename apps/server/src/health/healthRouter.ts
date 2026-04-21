@@ -1,5 +1,6 @@
 import { type RequestHandler, Router } from 'express';
 
+import { getAuth } from '@/auth/getAuth';
 import { getPrisma } from '@/prisma/db';
 import { getRedis } from '@/redis';
 
@@ -18,6 +19,7 @@ type HealthStatus = {
 	messages: string[];
 	timestamp: Temporal.Instant;
 	services: {
+		auth: ServiceHealthStatus;
 		database: ServiceHealthStatus;
 		redis: ServiceHealthStatus;
 	};
@@ -32,6 +34,7 @@ export const healthCheckHandler: RequestHandler = async (req, res) => {
 		services: {
 			database: ServiceHealthStatus.Unknown,
 			redis: ServiceHealthStatus.Unknown,
+			auth: ServiceHealthStatus.Unknown,
 		},
 	};
 
@@ -77,6 +80,22 @@ export const healthCheckHandler: RequestHandler = async (req, res) => {
 					errors.push(error);
 					health.messages.push('Could not connect to Redis');
 					health.services.redis = ServiceHealthStatus.Unhealthy;
+				}
+			})(),
+
+			(async () => {
+				// 3. Check Better Auth Initialization
+				// If your singleton pattern is used, awaiting getAuth() here
+				// ensures the service is fully "up".
+				try {
+					health.services.auth = getAuth()
+						? ServiceHealthStatus.Healthy
+						: ServiceHealthStatus.Unhealthy;
+				} catch (error) {
+					errors.push(error);
+					health.messages.push('Could not initialise auth');
+					health.services.auth = ServiceHealthStatus.Unhealthy;
+					haveCriticalError = true;
 				}
 			})(),
 		]);

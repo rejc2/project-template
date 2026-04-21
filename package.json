@@ -20,6 +20,7 @@
     "test-packages/*"
   ],
   "devDependencies": {
+    "@opentelemetry/api": "^1.9.1",
     "@trivago/prettier-plugin-sort-imports": "^6.0.2",
     "ajv": "^8.18.0",
     "ajv-formats": "^3.0.1",
