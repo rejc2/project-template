@@ -26,11 +26,14 @@ type HealthStatus = {
 };
 
 export const healthCheckHandler: RequestHandler = async (req, res) => {
+	const now = Temporal.Now.instant();
+	const processStart = now.subtract({ milliseconds: Math.floor(process.uptime() * 1_000) });
+
 	const health: HealthStatus = {
-		uptime: Temporal.Duration.from({ milliseconds: Math.floor(process.uptime() * 1_000) }),
+		uptime: processStart.until(now, { largestUnit: 'hours' }),
 		healthy: false,
 		messages: [],
-		timestamp: Temporal.Now.instant(),
+		timestamp: now,
 		services: {
 			database: ServiceHealthStatus.Unknown,
 			redis: ServiceHealthStatus.Unknown,
