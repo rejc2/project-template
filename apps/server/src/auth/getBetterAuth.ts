@@ -26,6 +26,15 @@ export function getBetterAuth<TPlugin extends BetterAuthPlugin = never>({
 
 		plugins,
 
+		cookies: {
+			secure: true,
+			// To support cross-domain cookies:
+			sameSite: 'none',
+			// Or to support cross-subdomain cookies:
+			// sameSite: 'lax',
+			// domain: '.the-main-domain.com',
+		},
+
 		emailAndPassword: {
 			enabled: enableEmailAndPassword,
 		},
