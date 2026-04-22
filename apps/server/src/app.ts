@@ -6,6 +6,7 @@ import { fileURLToPath } from 'url';
 
 import { authRouter } from './auth/authRouter.ts';
 import { contextMiddleware } from './context/contextMiddleware.ts';
+import { getFrontEndRouter } from './frontEnd/getFrontEndRouter.ts';
 import { healthRouter } from './health/healthRouter.ts';
 import { booksExampleRouter } from './routes/booksExampleRouter.ts';
 import { sessionMiddleware } from './session/sessionMiddleware.ts';
@@ -24,10 +25,6 @@ app.use(express.json());
 app.use(contextMiddleware);
 app.use(sessionMiddleware);
 
-app.get('/', (_req: Request, res: Response) => {
-	res.json({ message: 'projecttemplate server is running' });
-});
-
 app.use('/health', healthRouter);
 
 app.get('/version', async (_req: Request, res: Response) => {
@@ -45,6 +42,15 @@ app.use('/api', apiRouter);
 apiRouter.use('/auth', authRouter);
 
 apiRouter.use('/books-example', booksExampleRouter);
+
+const serveFrontEndPath = process.env.SERVE_FRONT_END_PATH || null;
+if (serveFrontEndPath != null) {
+	app.use('/', getFrontEndRouter(serveFrontEndPath));
+} else {
+	app.get('/', (_req: Request, res: Response) => {
+		res.json({ message: 'projecttemplate server is running' });
+	});
+}
 
 app.use((err: Error, _req: Request, res: Response, _next: NextFunction) => {
 	console.error(err);
