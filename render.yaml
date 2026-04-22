@@ -22,7 +22,10 @@ projects:
                 - apps/server/**
                 - packages/**
 
-            buildCommand: corepack enable && yarn install --immutable && yarn workspaces foreach --from @rejc2/projecttemplate-server --recursive --topological run build
+            # Build just server:
+            # buildCommand: corepack enable && yarn install --immutable && yarn workspaces foreach --from @rejc2/projecttemplate-server --recursive --topological run build
+            # Build everything:
+            buildCommand: corepack enable && yarn install --immutable && yarn build
             startCommand: yarn workspace @rejc2/projecttemplate-server prisma:migrate && yarn workspace @rejc2/projecttemplate-server prisma:seed && yarn workspace @rejc2/projecttemplate-server start
 
             healthCheckPath: /health
