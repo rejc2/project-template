@@ -1,24 +1,36 @@
+import { i18n } from '@lingui/core';
+import { I18nProvider } from '@lingui/react';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ErrorBoundary } from 'react-error-boundary';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
+import { messages as messagesDeDe } from '@/locales/de-DE/messages';
+import { messages as messagesEnGb } from '@/locales/en-GB/messages';
+
 import { ErrorPage } from './pages/ErrorPage';
 import { routes } from './routes';
 import { theme } from './theme';
+
+i18n.load('en-GB', messagesEnGb);
+i18n.load('de-DE', messagesDeDe);
+i18n.activate('en-GB');
+// i18n.activate('de-DE');
 
 const router = createBrowserRouter(routes);
 const queryClient = new QueryClient();
 
 export function App() {
 	return (
-		<QueryClientProvider client={queryClient}>
-			<ThemeProvider theme={theme}>
-				<CssBaseline />
-				<ErrorBoundary fallbackRender={({ error }) => <ErrorPage error={error} />}>
-					<RouterProvider router={router} />
-				</ErrorBoundary>
-			</ThemeProvider>
-		</QueryClientProvider>
+		<I18nProvider i18n={i18n}>
+			<QueryClientProvider client={queryClient}>
+				<ThemeProvider theme={theme}>
+					<CssBaseline />
+					<ErrorBoundary fallbackRender={({ error }) => <ErrorPage error={error} />}>
+						<RouterProvider router={router} />
+					</ErrorBoundary>
+				</ThemeProvider>
+			</QueryClientProvider>
+		</I18nProvider>
 	);
 }

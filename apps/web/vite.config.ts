@@ -1,3 +1,6 @@
+import { lingui as linguiPlugin } from '@lingui/vite-plugin';
+// import reactPlugin from '@vitejs/plugin-react';
+import reactSwcPlugin from '@vitejs/plugin-react-swc';
 import { exec } from 'child_process';
 import { dirname, resolve } from 'path';
 import type { RollupLog } from 'rollup';
@@ -35,6 +38,13 @@ export default defineConfig(async ({ command }) => {
 		test: {
 			setupFiles: ['./src/mocks/setup.ts'],
 		},
+		plugins: [
+			reactSwcPlugin({
+				plugins: [['@lingui/swc-plugin', {}]],
+			}),
+			linguiPlugin(),
+		],
+
 		build: {
 			rollupOptions: {
 				onwarn(warning: RollupLog, warn: (warning: RollupLog) => void) {
