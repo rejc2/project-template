@@ -5,10 +5,12 @@ import {
 } from '@rejc2/projecttemplate-api-specs/books-example';
 import { HttpResponse, http } from 'msw';
 
+import { env } from '@/env';
+
 import { mockBookData } from './mockBookData';
 
 export const booksExampleApiHandlers = [
-	http.get<{ id: string }>('/api/book/:id', ({ params }) => {
+	http.get<{ id: string }>(`${env.apiUrl}/api/book/:id`, ({ params }) => {
 		const book = mockBookData.find((b) => b.id === params.id);
 		if (!book) {
 			return new HttpResponse(null, { status: 404 });
@@ -16,7 +18,7 @@ export const booksExampleApiHandlers = [
 		return HttpResponse.json<GetBookResponse>({ book });
 	}),
 
-	http.get('/api/books', ({ request }) => {
+	http.get(`${env.apiUrl}/api/books-example`, ({ request }) => {
 		const { searchParams } = new URL(request.url);
 		const { first: firstFromParams, after } = GetBooksParamsSchema.parse(
 			Object.fromEntries(searchParams),
