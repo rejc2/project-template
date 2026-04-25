@@ -6,6 +6,9 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "generate": "yarn i18n:compile",
+    "i18n:extract": "lingui extract",
+    "i18n:compile": "lingui compile",
     "lint": "eslint .",
     "lint:strict": "yarn lint --max-warnings 0",
     "preview": "vite preview",
@@ -16,6 +19,8 @@
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
+    "@lingui/core": "^6.0.0",
+    "@lingui/react": "^6.0.0",
     "@mui/icons-material": "^7.3.8",
     "@mui/material": "^7.3.8",
     "@rejc2/projecttemplate-api-specs": "workspace:*",
@@ -31,14 +36,18 @@
     "zustand": "^5.0.11"
   },
   "devDependencies": {
+    "@lingui/cli": "^6.0.0",
+    "@lingui/swc-plugin": "^6.0.0",
+    "@lingui/vite-plugin": "^6.0.0",
     "@rejc2/projecttemplate-eslint-config": "workspace:*",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@vitejs/plugin-react-swc": "^4.3.0",
     "eslint": "^9.39.2",
-    "msw": "^2.12.10",
+    "msw": "^2.13.4",
     "typescript": "^5.9.3",
-    "vite": "^7.3.1",
-    "vitest": "^4.0.18"
+    "vite": "^8.0.8",
+    "vitest": "^4.1.4"
   },
   "msw": {
     "workerDirectory": [
