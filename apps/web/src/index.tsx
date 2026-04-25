@@ -6,6 +6,7 @@ import { App } from './App';
 console.info(`Build date: ${__BUILD_DATE__}, commit: ${__COMMIT_HASH__}`);
 
 if (import.meta.env.DEV && import.meta.env.VITE_MOCK_API_HANDLERS === 'true') {
+	console.info('Using mock API handlers');
 	const { worker } = await import('./mocks/browser');
 	await worker.start({ onUnhandledRequest: 'bypass' });
 }

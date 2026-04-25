@@ -34,11 +34,13 @@ export default defineConfig({
 			env: {
 				PORT: String(serverPort),
 				CORS_ORIGIN: `http://localhost:${webPort}`,
+				// SERVE_FRONT_END_PATH: '../web/dist',
 			},
 		},
 		{
 			// Web FE:
-			command: 'yarn workspace @rejc2/projecttemplate-web dev',
+			command:
+				'yarn workspace @rejc2/projecttemplate-web generate && yarn workspace @rejc2/projecttemplate-web dev',
 			url: `http://localhost:${webPort}`,
 			reuseExistingServer: !isCI,
 			env: {

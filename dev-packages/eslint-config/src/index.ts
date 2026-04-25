@@ -11,9 +11,11 @@ import tseslint from 'typescript-eslint';
 export function getConfig({
 	tsconfigRootDir,
 	includeReact = false,
+	ignores = [],
 }: {
 	tsconfigRootDir: string;
 	includeReact?: boolean;
+	ignores?: string[];
 }): Linter.Config[] {
 	return [
 		eslint.configs.recommended,
@@ -69,6 +71,7 @@ export function getConfig({
 				'**/generated/**',
 				'**/playwright-report/**',
 				'**/test-results/**',
+				...ignores,
 			],
 		},
 	];

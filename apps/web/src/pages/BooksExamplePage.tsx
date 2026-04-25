@@ -1,3 +1,4 @@
+import { Trans } from '@lingui/react/macro';
 import { Box, Button, List, ListItem, ListItemText, Stack, Typography } from '@mui/material';
 
 import { useBooks } from '@/api/books-example/books-example-api-hooks';
@@ -11,7 +12,9 @@ export function BooksExamplePage() {
 	return (
 		<Box sx={{ p: 3 }}>
 			<Stack direction="row" gap={1} justifyContent="space-between">
-				<Typography variant="h1">Books</Typography>
+				<Typography variant="h1">
+					<Trans context="heading">Books</Trans>
+				</Typography>
 				<LogInWithGoogleButton />
 			</Stack>
 			<List>
@@ -23,7 +26,7 @@ export function BooksExamplePage() {
 			</List>
 			{hasNextPage && (
 				<Button onClick={() => fetchNextPage()} loading={isFetchingNextPage}>
-					Load more
+					<Trans context="button">Load more</Trans>
 				</Button>
 			)}
 		</Box>
