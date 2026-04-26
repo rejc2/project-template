@@ -13,22 +13,22 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/pages/BooksExamplePage.tsx:16
+#: src/pages/BooksExamplePage.tsx
 msgctxt "heading"
 msgid "Books"
 msgstr "Bücher"
 
-#: src/pages/HomePage.tsx:18
+#: src/pages/HomePage.tsx
 msgctxt "link"
 msgid "Books Example"
 msgstr "Bücherbeispiel"
 
-#: src/pages/HomePage.tsx:10
+#: src/pages/HomePage.tsx
 msgctxt "heading"
 msgid "Home"
 msgstr "Startseite"
 
-#: src/pages/BooksExamplePage.tsx:29
+#: src/pages/BooksExamplePage.tsx
 msgctxt "button"
 msgid "Load more"
 msgstr "Mehr laden"

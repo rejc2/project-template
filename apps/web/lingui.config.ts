@@ -1,8 +1,7 @@
 import { defineConfig } from '@lingui/cli';
+import { formatter } from '@lingui/format-po';
 
 export default defineConfig({
-	sourceLocale: 'en-GB',
-	locales: ['de-DE', 'en-GB'],
 	catalogs: [
 		{
 			path: '<rootDir>/src/locales/{locale}/messages',
@@ -10,4 +9,7 @@ export default defineConfig({
 		},
 	],
 	compileNamespace: 'ts',
+	format: formatter({ origins: true, lineNumbers: false }),
+	locales: ['de-DE', 'en-GB'],
+	sourceLocale: 'en-GB',
 });
