@@ -1,6 +1,7 @@
 import type { RouteObject } from 'react-router-dom';
 
 import { RouteErrorBoundary } from './components/RouteErrorBoundary';
+import { BooksExampleBookPage } from './pages/BooksExampleBookPage';
 import { BooksExamplePage } from './pages/BooksExamplePage';
 import { HomePage } from './pages/HomePage';
 
@@ -17,6 +18,10 @@ export const routes: RouteObject[] = [
 			{
 				path: '/books-example',
 				element: <BooksExamplePage />,
+			},
+			{
+				path: '/books-example/:bookId',
+				element: <BooksExampleBookPage />,
 			},
 			...testRoutes,
 			{

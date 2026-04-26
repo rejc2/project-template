@@ -4,6 +4,7 @@ export const BookSchema = z.object({
 	id: z.string(),
 	title: z.string(),
 	authors: z.array(z.string()),
+	description: z.string().nullable(),
 });
 export type Book = z.infer<typeof BookSchema>;
 
@@ -16,6 +17,9 @@ export type GetBookResponse = z.infer<typeof GetBookResponseSchema>;
 
 // /api/books
 
+export const BookItemSchema = BookSchema.pick({ id: true, title: true, authors: true });
+export type BookItem = z.infer<typeof BookItemSchema>;
+
 export const GetBooksParamsSchema = z.object({
 	first: z
 		.union([z.number(), z.string().transform(Number)])
@@ -26,7 +30,7 @@ export const GetBooksParamsSchema = z.object({
 export type GetBooksParams = z.infer<typeof GetBooksParamsSchema>;
 
 export const GetBooksResponseSchema = z.object({
-	books: z.array(BookSchema),
+	books: z.array(BookItemSchema),
 	endCursor: z.string().nullable(),
 	hasNextPage: z.boolean(),
 });
