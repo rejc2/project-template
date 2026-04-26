@@ -86,6 +86,7 @@ describe('GET /api/books-example/:bookId', () => {
 				id: 'book_1',
 				title: 'Test Book',
 				authors: ['Fred Bloggs'],
+				description: 'The story of how one man wrote a test case',
 			},
 		} satisfies GetBookResponse);
 	});
