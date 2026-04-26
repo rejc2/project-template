@@ -36,7 +36,7 @@ async function seedBook(bookId = 'book_1', title = 'Test Book') {
 		data: { id: 'author_1', name: 'Fred Bloggs' },
 	});
 	await db.bookExample.create({
-		data: { id: bookId, title },
+		data: { id: bookId, title, description: 'The story of how one man wrote a test case' },
 	});
 	await db.bookExampleAuthorLink.create({
 		data: { authorId: 'author_1', bookId },
@@ -86,6 +86,7 @@ describe('GET /api/books-example/:bookId', () => {
 				id: 'book_1',
 				title: 'Test Book',
 				authors: ['Fred Bloggs'],
+				description: 'The story of how one man wrote a test case',
 			},
 		} satisfies GetBookResponse);
 	});

@@ -1,5 +1,6 @@
 import { Trans } from '@lingui/react/macro';
-import { Box, Button, List, ListItem, ListItemText, Stack, Typography } from '@mui/material';
+import { Box, Button, Link, List, ListItem, ListItemText, Stack, Typography } from '@mui/material';
+import { Link as RouterLink } from 'react-router';
 
 import { useBooks } from '@/api/books-example/books-example-api-hooks';
 import LogInWithGoogleButton from '@/components/LogInWithGoogleButton';
@@ -20,7 +21,17 @@ export function BooksExamplePage() {
 			<List>
 				{books.map((book) => (
 					<ListItem key={book.id}>
-						<ListItemText primary={book.title} secondary={book.authors.join(', ')} />
+						<ListItemText
+							primary={
+								<Link
+									component={RouterLink}
+									to={`/books-example/${encodeURIComponent(book.id)}`}
+								>
+									{book.title}
+								</Link>
+							}
+							secondary={book.authors.join(', ')}
+						/>
 					</ListItem>
 				))}
 			</List>

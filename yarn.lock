@@ -2075,6 +2075,7 @@ __metadata:
     "@better-auth/prisma-adapter": "npm:^1.6.2"
     "@prisma/adapter-pg": "npm:^7.0.0"
     "@prisma/client": "npm:^7.0.0"
+    "@rejc2/projecttemplate-api-specs": "workspace:*"
     "@rejc2/projecttemplate-eslint-config": "workspace:*"
     "@types/bcrypt": "npm:^6.0.0"
     "@types/cors": "npm:^2.8.19"
