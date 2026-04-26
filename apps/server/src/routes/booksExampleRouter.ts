@@ -37,7 +37,7 @@ booksExampleRouter.get(
 			})),
 			endCursor: page.length > 0 ? (page[page.length - 1]?.id ?? null) : null,
 			hasNextPage,
-		});
+		} satisfies GetBooksResponse);
 	},
 );
 
@@ -59,6 +59,7 @@ booksExampleRouter.get(
 				id: book.id,
 				title: book.title,
 				authors: book.authors.map((a) => a.author.name),
+				description: book.description,
 			},
 		});
 	},
