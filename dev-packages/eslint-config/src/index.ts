@@ -43,6 +43,8 @@ export function getConfig({
 				},
 			},
 			rules: {
+				'no-unused-private-class-members': 'warn',
+
 				...(includeReact && {
 					// React rules
 					...reactPlugin.configs.recommended.rules,

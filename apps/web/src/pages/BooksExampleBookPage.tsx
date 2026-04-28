@@ -6,18 +6,20 @@ import LogInWithGoogleButton from '@/components/LogInWithGoogleButton';
 
 export function BooksExampleBookPage() {
 	const { bookId } = useParams<{ bookId: string }>();
-	const { data, isPending } = useBook(bookId!);
+	const { data, isPending, isPlaceholderData, isFetching } = useBook(bookId!);
 
 	const book = data?.book;
 
-	if (isPending) {
-		return (
-			<Box sx={{ p: 3, display: 'flex', justifyContent: 'center' }}>
-				<CircularProgress size={120} />
-			</Box>
-		);
-	} else if (book == null) {
-		throw new Response('Book not found', { status: 404, statusText: 'Not Found' });
+	if (book == null) {
+		if (isPending) {
+			return (
+				<Box sx={{ p: 3, display: 'flex', justifyContent: 'center' }}>
+					<CircularProgress size={120} />
+				</Box>
+			);
+		} else {
+			throw new Response('Book not found', { status: 404, statusText: 'Not Found' });
+		}
 	}
 
 	return (
@@ -28,7 +30,11 @@ export function BooksExampleBookPage() {
 			</Stack>
 			<Stack gap={1}>
 				<Typography variant="subtitle1">{book.authors.join(', ')}</Typography>
-				{book.description && <Typography>{book.description}</Typography>}
+				{book.description != null ? (
+					<Typography>{book.description}</Typography>
+				) : (
+					isPlaceholderData && isFetching && <CircularProgress />
+				)}
 			</Stack>
 		</Box>
 	);
