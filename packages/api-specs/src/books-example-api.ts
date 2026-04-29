@@ -26,6 +26,11 @@ export const GetBooksParamsSchema = z.object({
 		.pipe(z.number().int().positive())
 		.optional(),
 	after: z.string().optional(),
+	filter: z
+		.object({
+			title: z.string().optional(),
+		})
+		.optional(),
 });
 export type GetBooksParams = z.infer<typeof GetBooksParamsSchema>;
 

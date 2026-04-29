@@ -10,8 +10,8 @@ import type {
 
 import { env } from '@/env';
 
-export async function getBook(id: string): Promise<GetBookResponse> {
-	const response = await fetch(`${env.apiUrl}/api/books-example/${encodeURIComponent(id)}`);
+export async function getBook(bookId: string): Promise<GetBookResponse> {
+	const response = await fetch(`${env.apiUrl}/api/books-example/${encodeURIComponent(bookId)}`);
 	if (!response.ok) {
 		throw new Error(`Failed to fetch book: ${response.statusText}`);
 	}
