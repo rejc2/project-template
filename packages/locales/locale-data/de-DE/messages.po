@@ -1,11 +1,11 @@
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2026-04-23 21:05-0700\n"
+"POT-Creation-Date: 2026-04-30 16:47-0700\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: @lingui/cli\n"
-"Language: en-GB\n"
+"Language: de-DE\n"
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "PO-Revision-Date: \n"
@@ -13,26 +13,22 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/pages/BooksExamplePage.tsx
+#: apps/web/src/pages/BooksExamplePage.tsx
 msgctxt "heading"
 msgid "Books"
-msgstr "Books"
+msgstr "Bücher"
 
-#: src/pages/HomePage.tsx
+#: apps/web/src/pages/HomePage.tsx
 msgctxt "link"
 msgid "Books Example"
-msgstr "Books Example"
+msgstr "Bücher-Beispiel"
 
-#: src/pages/HomePage.tsx
-#~ msgid "Home"
-#~ msgstr "Home"
-
-#: src/pages/HomePage.tsx
+#: apps/web/src/pages/HomePage.tsx
 msgctxt "heading"
 msgid "Home"
-msgstr "Home"
+msgstr "Startseite"
 
-#: src/pages/BooksExamplePage.tsx
+#: apps/web/src/pages/BooksExamplePage.tsx
 msgctxt "button"
 msgid "Load more"
-msgstr "Load more"
+msgstr "Mehr laden"

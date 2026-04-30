@@ -12,6 +12,7 @@ export function HomePage() {
 			<Box display="flex" gap={1}>
 				<Button onClick={() => i18n.activate('en-GB')}>English (UK)</Button>
 				<Button onClick={() => i18n.activate('de-DE')}>Deutsch</Button>
+				<Button onClick={() => i18n.activate('zh-Hant-TW')}>整體中文</Button>
 			</Box>
 			<Box>
 				<MuiLink component={RouterLink} to={'/books-example'}>
