@@ -25,7 +25,7 @@ jobs:
         run: yarn install --immutable
 
       - name: Run i18n extract
-        run: yarn workspace @rejc2/projecttemplate-web i18n:extract
+        run: yarn i18n:extract
 
       - name: Check for uncommitted changes
         run: |
