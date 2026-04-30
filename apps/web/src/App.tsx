@@ -1,12 +1,13 @@
 import { i18n } from '@lingui/core';
 import { I18nProvider } from '@lingui/react';
 import { CssBaseline, ThemeProvider } from '@mui/material';
+// import { messages as messagesDeDe } from '@/locales/de-DE/messages.po';
+// import { messages as messagesEnGb } from '@/locales/en-GB/messages.po';
+import { messages as messagesDeDe } from '@rejc2/projecttemplate-locales/de-DE/messages.po';
+import { messages as messagesEnGb } from '@rejc2/projecttemplate-locales/en-GB/messages.po';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ErrorBoundary } from 'react-error-boundary';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-
-import { messages as messagesDeDe } from '@/locales/de-DE/messages';
-import { messages as messagesEnGb } from '@/locales/en-GB/messages';
 
 import { ErrorPage } from './pages/ErrorPage';
 import { routes } from './routes';
