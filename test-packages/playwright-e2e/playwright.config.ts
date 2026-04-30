@@ -39,8 +39,7 @@ export default defineConfig({
 		},
 		{
 			// Web FE:
-			command:
-				'yarn workspace @rejc2/projecttemplate-web generate && yarn workspace @rejc2/projecttemplate-web dev',
+			command: 'yarn workspace @rejc2/projecttemplate-web dev',
 			url: `http://localhost:${webPort}`,
 			reuseExistingServer: !isCI,
 			env: {
