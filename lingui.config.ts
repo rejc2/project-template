@@ -4,8 +4,8 @@ import { formatter } from '@lingui/format-po';
 export default defineConfig({
 	catalogs: [
 		{
-			path: '<rootDir>/src/locales/{locale}/messages',
-			include: ['src'],
+			path: '<rootDir>/packages/locales/locale-data/{locale}/messages',
+			include: ['apps/server/src', 'apps/web/src'],
 		},
 	],
 	compileNamespace: 'ts',
