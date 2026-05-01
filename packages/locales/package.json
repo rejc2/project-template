@@ -1,0 +1,11 @@
+{
+  "name": "@rejc2/projecttemplate-locales",
+  "packageManager": "yarn@4.12.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./de-DE/messages.po": "./locale-data/de-DE/messages.po",
+    "./en-GB/messages.po": "./locale-data/en-GB/messages.po",
+    "./zh-Hant-TW/messages.po": "./locale-data/zh-Hant-TW/messages.po"
+  }
+}

@@ -25,11 +25,11 @@ jobs:
         run: yarn install --immutable
 
       - name: Run i18n extract
-        run: yarn workspace @rejc2/projecttemplate-web i18n:extract
+        run: yarn i18n:extract
 
       - name: Check for uncommitted changes
         run: |
           if ! git diff --exit-code; then
-            echo "i18n extraction produced changes. Run 'yarn workspace @rejc2/projecttemplate-web i18n:extract' locally and commit the result."
+            echo "i18n extraction produced changes. Run 'yarn i18n:extract' locally and commit the result."
             exit 1
           fi
