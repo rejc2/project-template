@@ -4,8 +4,12 @@
   "private": true,
   "type": "module",
   "exports": {
+    ".": "./src/index.ts",
     "./de-DE/messages.po": "./locale-data/de-DE/messages.po",
     "./en-GB/messages.po": "./locale-data/en-GB/messages.po",
     "./zh-Hant-TW/messages.po": "./locale-data/zh-Hant-TW/messages.po"
+  },
+  "dependencies": {
+    "nullthrows": "^1.1.1"
   }
 }
