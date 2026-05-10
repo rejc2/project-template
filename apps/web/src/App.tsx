@@ -1,6 +1,8 @@
 import { i18n } from '@lingui/core';
 import { I18nProvider } from '@lingui/react';
 import { CssBaseline, ThemeProvider } from '@mui/material';
+import pickLocale from '@rejc2/pick-locale';
+import { availableLocales } from '@rejc2/projecttemplate-locales';
 import { messages as messagesDeDe } from '@rejc2/projecttemplate-locales/de-DE/messages.po';
 import { messages as messagesEnGb } from '@rejc2/projecttemplate-locales/en-GB/messages.po';
 import { messages as messagesZhHantTw } from '@rejc2/projecttemplate-locales/zh-Hant-TW/messages.po';
@@ -15,7 +17,13 @@ import { theme } from './theme';
 i18n.load('en-GB', messagesEnGb);
 i18n.load('de-DE', messagesDeDe);
 i18n.load('zh-Hant-TW', messagesZhHantTw);
-i18n.activate('en-GB');
+
+const initialLocale =
+	pickLocale({ accept: navigator.language, available: availableLocales }) ?? 'en-GB';
+
+i18n.activate(initialLocale);
+
+console.log({ availableLocales });
 
 const router = createBrowserRouter(routes);
 const queryClient = new QueryClient();

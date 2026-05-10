@@ -1,0 +1,27 @@
+{
+  "name": "@rejc2/pick-locale",
+  "packageManager": "yarn@4.12.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "lint:strict": "yarn lint --max-warnings 0",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --build --noEmit"
+  },
+  "dependencies": {
+    "bcp-47": "^2.1.0",
+    "nullthrows": "^1.1.1"
+  },
+  "devDependencies": {
+    "@rejc2/projecttemplate-eslint-config": "workspace:*",
+    "@types/node": "^25.6.0",
+    "eslint": "^10.3.0",
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.5"
+  }
+}
