@@ -2192,6 +2192,7 @@ __metadata:
   resolution: "@rejc2/projecttemplate-eslint-config@workspace:dev-packages/eslint-config"
   dependencies:
     "@eslint/js": "npm:^9.18.0"
+    "@types/node": "npm:^25.6.0"
     eslint: "npm:^9.39.2"
     eslint-plugin-import: "npm:^2.32.0"
     eslint-plugin-react: "npm:^7.37.4"
