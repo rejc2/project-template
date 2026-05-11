@@ -3,7 +3,6 @@ import createPrismaMock from 'prisma-mock/client';
 import { vi } from 'vitest';
 import { mockDeep } from 'vitest-mock-extended';
 
-import '@/polyfills';
 import { Prisma } from '@/prisma/generated/client/client';
 import * as dmmf from '@/prisma/generated/dmmf.js';
 

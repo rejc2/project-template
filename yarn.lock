@@ -2270,7 +2270,6 @@ __metadata:
     prisma: "npm:^7.0.0"
     prisma-mock: "npm:^1.1.0"
     supertest: "npm:^7.1.0"
-    temporal-polyfill: "npm:^0.3.2"
     tsx: "npm:^4.19.4"
     typescript: "npm:^6.0.3"
     vitest: "npm:^4.1.4"

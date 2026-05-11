@@ -1,6 +1,5 @@
 import redisMock from 'ioredis-mock';
 import createPrismaMock from 'prisma-mock/client';
-import { Temporal } from 'temporal-polyfill';
 import { beforeEach, describe, expect, it } from 'vitest';
 import { mockDeep } from 'vitest-mock-extended';
 
