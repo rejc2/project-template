@@ -9,7 +9,8 @@
 		"strict": true,
 		"skipLibCheck": true,
 		"esModuleInterop": true,
-		"rootDir": "src"
+		"rootDir": ".",
+		"types": ["node"]
 	},
-	"include": ["src/index.ts"]
+	"include": ["src/index.ts", "eslint.config.ts"]
 }

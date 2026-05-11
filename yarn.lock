@@ -2171,7 +2171,7 @@ __metadata:
     bcp-47: "npm:^2.1.0"
     eslint: "npm:^10.3.0"
     nullthrows: "npm:^1.1.1"
-    typescript: "npm:^5.9.3"
+    typescript: "npm:^6.0.3"
     vitest: "npm:^4.1.5"
   languageName: unknown
   linkType: soft
@@ -2182,7 +2182,7 @@ __metadata:
   dependencies:
     "@rejc2/projecttemplate-eslint-config": "workspace:*"
     eslint: "npm:^10.0.3"
-    typescript: "npm:^5.9.3"
+    typescript: "npm:^6.0.3"
     zod: "npm:^4.3.6"
   languageName: unknown
   linkType: soft
@@ -2192,12 +2192,13 @@ __metadata:
   resolution: "@rejc2/projecttemplate-eslint-config@workspace:dev-packages/eslint-config"
   dependencies:
     "@eslint/js": "npm:^9.18.0"
+    "@types/node": "npm:^25.6.0"
     eslint: "npm:^9.39.2"
     eslint-plugin-import: "npm:^2.32.0"
     eslint-plugin-react: "npm:^7.37.4"
     eslint-plugin-react-hooks: "npm:^5.1.0"
     jiti: "npm:^2.6.1"
-    typescript: "npm:^5.7.3"
+    typescript: "npm:^6.0.3"
     typescript-eslint: "npm:^8.22.0"
   languageName: unknown
   linkType: soft
@@ -2234,7 +2235,7 @@ __metadata:
     "@rejc2/projecttemplate-eslint-config": "workspace:*"
     "@types/node": "npm:^25.6.0"
     eslint: "npm:^9.39.2"
-    typescript: "npm:^5.9.3"
+    typescript: "npm:^6.0.3"
   languageName: unknown
   linkType: soft
 
@@ -2271,7 +2272,7 @@ __metadata:
     supertest: "npm:^7.1.0"
     temporal-polyfill: "npm:^0.3.2"
     tsx: "npm:^4.19.4"
-    typescript: "npm:^5.9.3"
+    typescript: "npm:^6.0.3"
     vitest: "npm:^4.1.4"
     vitest-mock-extended: "npm:^3.1.0"
   languageName: unknown
@@ -2294,6 +2295,7 @@ __metadata:
     "@rejc2/projecttemplate-eslint-config": "workspace:*"
     "@rejc2/projecttemplate-locales": "workspace:*"
     "@tanstack/react-query": "npm:^5.90.21"
+    "@types/node": "npm:^25.6.0"
     "@types/react": "npm:^19"
     "@types/react-dom": "npm:^19"
     "@vitejs/plugin-react-swc": "npm:^4.3.0"
@@ -2307,7 +2309,7 @@ __metadata:
     react-router: "npm:^7.13.0"
     react-router-dom: "npm:^7.13.0"
     temporal-polyfill: "npm:^0.3.2"
-    typescript: "npm:^5.9.3"
+    typescript: "npm:^6.0.3"
     vite: "npm:^8.0.8"
     vitest: "npm:^4.1.4"
     zod: "npm:^4.3.6"
@@ -9279,23 +9281,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:^5.7.3, typescript@npm:^5.9.3":
-  version: 5.9.3
-  resolution: "typescript@npm:5.9.3"
+"typescript@npm:^6.0.3":
+  version: 6.0.3
+  resolution: "typescript@npm:6.0.3"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 10c0/6bd7552ce39f97e711db5aa048f6f9995b53f1c52f7d8667c1abdc1700c68a76a308f579cd309ce6b53646deb4e9a1be7c813a93baaf0a28ccd536a30270e1c5
+  checksum: 10c0/4a25ff5045b984370f48f196b3a0120779b1b343d40b9a68d114ea5e5fff099809b2bb777576991a63a5cd59cf7bffd96ff6fe10afcefbcb8bd6fb96ad4b6606
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@npm%3A^5.7.3#optional!builtin<compat/typescript>, typescript@patch:typescript@npm%3A^5.9.3#optional!builtin<compat/typescript>":
-  version: 5.9.3
-  resolution: "typescript@patch:typescript@npm%3A5.9.3#optional!builtin<compat/typescript>::version=5.9.3&hash=5786d5"
+"typescript@patch:typescript@npm%3A^6.0.3#optional!builtin<compat/typescript>":
+  version: 6.0.3
+  resolution: "typescript@patch:typescript@npm%3A6.0.3#optional!builtin<compat/typescript>::version=6.0.3&hash=5786d5"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 10c0/ad09fdf7a756814dce65bc60c1657b40d44451346858eea230e10f2e95a289d9183b6e32e5c11e95acc0ccc214b4f36289dcad4bf1886b0adb84d711d336a430
+  checksum: 10c0/2f25c74e65663c248fa1ade2b8459d9ce5372ff9dad07067310f132966ebec1d93f6c42f0baf77a6b6a7a91460463f708e6887013aaade22111037457c6b25df
   languageName: node
   linkType: hard
 
