@@ -31,8 +31,7 @@
     "express-session": "^1.19.0",
     "ioredis": "^5.9.3",
     "nullthrows": "^1.1.1",
-    "pg": "^8.18.0",
-    "temporal-polyfill": "^0.3.2"
+    "pg": "^8.18.0"
   },
   "devDependencies": {
     "@rejc2/projecttemplate-eslint-config": "workspace:*",
