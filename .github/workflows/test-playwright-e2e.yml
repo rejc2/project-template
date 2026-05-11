@@ -42,7 +42,7 @@ jobs:
           node-version: "26"
 
       - name: Enable Corepack
-        run: corepack enable
+        run: corepack install
 
       - name: Install dependencies
         run: yarn install --immutable
