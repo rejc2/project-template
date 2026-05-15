@@ -2222,6 +2222,7 @@ __metadata:
     ajv: "npm:^8.18.0"
     ajv-formats: "npm:^3.0.1"
     prettier: "npm:^3.8.1"
+    prettier-plugin-nginx: "npm:^1.0.3"
     prettier-plugin-prisma: "npm:^5.0.0"
     yaml: "npm:^2.8.2"
   languageName: unknown
@@ -7845,6 +7846,13 @@ __metadata:
   version: 1.2.1
   resolution: "prelude-ls@npm:1.2.1"
   checksum: 10c0/b00d617431e7886c520a6f498a2e14c75ec58f6d93ba48c3b639cf241b54232d90daa05d83a9e9b9fef6baa63cb7e1e4602c2372fea5bc169668401eb127d0cd
+  languageName: node
+  linkType: hard
+
+"prettier-plugin-nginx@npm:^1.0.3":
+  version: 1.0.3
+  resolution: "prettier-plugin-nginx@npm:1.0.3"
+  checksum: 10c0/3f4678828053c863b7dcd6ea11b93442f1b7643a3fe0731edb15711f29f7402bad92a870ae2d108890d4df4d1356a4d70e44b3553bd905663f72c343689c0dae
   languageName: node
   linkType: hard
 

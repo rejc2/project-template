@@ -1,0 +1,21 @@
+server {
+	listen 80;
+
+	#
+	# API proxy
+	#
+	location /api/ {
+		proxy_pass http://server:3000;
+		proxy_set_header Host $host;
+		proxy_set_header X-Real-IP $remote_addr;
+	}
+
+	#
+	# Everything else → web (SPA)
+	#
+	location / {
+		proxy_pass http://web/;
+		proxy_set_header Host $host;
+		proxy_set_header X-Real-IP $remote_addr;
+	}
+}

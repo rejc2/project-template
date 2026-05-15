@@ -7,6 +7,7 @@
     "build:info": "tsx scripts/write-build-info.ts",
     "build": "yarn generate",
     "dev": "yarn build:info && tsx watch --env-file=.env src/index.ts",
+    "docker:build": "cd ../.. && docker build --file apps/server/Dockerfile --tag rejc2/projecttemplate-server .",
     "generate": "yarn build:info && yarn prisma:generate",
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate deploy",

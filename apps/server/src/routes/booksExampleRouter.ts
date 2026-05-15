@@ -6,9 +6,11 @@ import {
 } from '@rejc2/projecttemplate-api-specs/books-example';
 import { type Request, type Response, Router } from 'express';
 
+import { sessionContextMiddleware } from '@/auth/sessionContextMiddleware.ts';
 import { getPrisma } from '@/prisma/db.ts';
 
 export const booksExampleRouter = Router();
+booksExampleRouter.use(sessionContextMiddleware);
 
 type ErrorResponse = { error: string };
 

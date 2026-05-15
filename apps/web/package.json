@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "docker:build": "cd ../.. && docker build --file apps/web/Dockerfile --tag rejc2/projecttemplate-web .",
     "lint": "eslint .",
     "lint:strict": "yarn lint --max-warnings 0",
     "preview": "vite preview",
