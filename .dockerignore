@@ -1,0 +1,48 @@
+# VCS
+.git
+.gitignore
+.sl
+
+# Editor / tooling
+.vscode
+.claude
+.idea
+.DS_Store
+
+# Dependencies (let the image install these)
+**/node_modules
+
+# Build output
+**/dist
+**/build
+**/.next
+**/out
+**/coverage
+**/tsp-output
+**/playwright-report
+**/test-results
+
+# Caches
+.yarn/cache
+.yarn/install-state.gz
+.yarn/build-state.yml
+**/.cache
+**/.parcel-cache
+**/.eslintcache
+**/*.tsbuildinfo
+
+# Logs
+**/*.log
+**/logs
+
+# Environment files (don't bake secrets into images)
+**/.env
+**/.env.*
+!**/.env.example
+
+# Docker
+**/Dockerfile*
+**/.dockerignore
+
+# Local overrides
+**/*.local.*
