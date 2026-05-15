@@ -1,0 +1,56 @@
+services:
+  postgres:
+    image: postgres:18-alpine
+    environment:
+      POSTGRES_USER: appuser
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: appdb
+    volumes:
+      - postgres_data:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U appuser -d appdb"]
+      interval: 2s
+      timeout: 5s
+      retries: 10
+
+  # One-shot: applies pending Prisma migrations and exits.
+  migrate:
+    build:
+      context: .
+      dockerfile: apps/server/Dockerfile
+    command: yarn prisma:migrate
+    environment:
+      DATABASE_URL: postgresql://appuser:password@postgres:5432/appdb
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: "no"
+
+  # Opt-in: only runs when the "seed" profile is active (e.g. `--profile seed`).
+  seed:
+    build:
+      context: .
+      dockerfile: apps/server/Dockerfile
+    command: yarn prisma:seed
+    environment:
+      DATABASE_URL: postgresql://appuser:password@postgres:5432/appdb
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+    restart: "no"
+    profiles: ["seed"]
+
+  server:
+    environment:
+      DATABASE_URL: postgresql://appuser:password@postgres:5432/appdb
+      REDIS_URL: redis://redis:6379
+    depends_on:
+      redis:
+        condition: service_started
+      postgres:
+        condition: service_healthy
+      migrate:
+        condition: service_completed_successfully
+
+volumes:
+  postgres_data:

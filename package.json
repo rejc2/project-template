@@ -5,6 +5,9 @@
   "type": "module",
   "scripts": {
     "build": "yarn workspaces foreach --all --topological run build",
+    "docker:base": "docker build --file ./docker/Dockerfile.base --tag rejc2/projecttemplate-base-image .",
+    "docker:compose:db": "docker compose -f docker-compose.yml -f docker-compose.db.yml up --build",
+    "docker:compose:db:seed": "COMPOSE_PROFILES=seed yarn docker:compose:db",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "i18n:extract": "lingui extract",
@@ -28,6 +31,7 @@
     "ajv": "^8.18.0",
     "ajv-formats": "^3.0.1",
     "prettier": "^3.8.1",
+    "prettier-plugin-nginx": "^1.0.3",
     "prettier-plugin-prisma": "^5.0.0",
     "yaml": "^2.8.2"
   }

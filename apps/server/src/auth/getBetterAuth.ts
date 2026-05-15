@@ -26,6 +26,11 @@ export function getBetterAuth<TPlugin extends BetterAuthPlugin = never>({
 
 		plugins,
 
+		trustedOrigins: (process.env.CORS_ORIGIN ?? '')
+			.split(',')
+			.map((o) => o.trim())
+			.filter(Boolean),
+
 		cookies: {
 			secure: true,
 			// To support cross-domain cookies:
