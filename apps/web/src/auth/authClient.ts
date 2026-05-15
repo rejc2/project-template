@@ -4,5 +4,5 @@ import { env } from '@/env';
 
 export const authClient = createAuthClient({
 	// This must match your Express server URL
-	baseURL: `${env.apiUrl}/api/auth`,
+	baseURL: new URL(`${env.apiUrl}/api/auth`, location.origin).toString(),
 });
