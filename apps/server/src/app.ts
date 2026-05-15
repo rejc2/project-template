@@ -1,3 +1,4 @@
+import { APIError } from 'better-auth';
 import cors from 'cors';
 import express, { type NextFunction, type Request, type Response, Router } from 'express';
 import { readFile } from 'fs/promises';
@@ -9,21 +10,22 @@ import { contextMiddleware } from './context/contextMiddleware.ts';
 import { getFrontEndRouter } from './frontEnd/getFrontEndRouter.ts';
 import { healthRouter } from './health/healthRouter.ts';
 import { booksExampleRouter } from './routes/booksExampleRouter.ts';
-import { sessionMiddleware } from './session/sessionMiddleware.ts';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 export const app = express();
 
-const corsOrigin = process.env.CORS_ORIGIN;
-if (corsOrigin) {
-	app.use(cors({ origin: corsOrigin, credentials: true }));
+const corsOrigins = (process.env.CORS_ORIGIN ?? '')
+	.split(',')
+	.map((o) => o.trim())
+	.filter(Boolean);
+if (corsOrigins.length > 0) {
+	app.use(cors({ origin: corsOrigins, credentials: true }));
 } else {
 	console.warn('Warning: No CORS origin set');
 }
 app.use(express.json());
 app.use(contextMiddleware);
-app.use(sessionMiddleware);
 
 app.use('/health', healthRouter);
 
@@ -43,6 +45,9 @@ apiRouter.use('/auth', authRouter);
 
 apiRouter.use('/books-example', booksExampleRouter);
 
+apiRouter.use('/health', healthRouter);
+
+// Serve the front end, if path is provided
 const serveFrontEndPath = process.env.SERVE_FRONT_END_PATH || null;
 if (serveFrontEndPath != null) {
 	app.use('/', getFrontEndRouter(serveFrontEndPath));
@@ -52,7 +57,14 @@ if (serveFrontEndPath != null) {
 	});
 }
 
-app.use((err: Error, _req: Request, res: Response, _next: NextFunction) => {
+app.use(async (err: Error, _req: Request, res: Response, _next: NextFunction) => {
 	console.error(err);
-	res.status(500).json({ error: err.message });
+
+	const responseStatus = err instanceof APIError ? 401 : 500;
+
+	res.status(responseStatus).json({
+		error: err.message,
+		stack: err.stack,
+		stackTraceLimit: Error.stackTraceLimit,
+	});
 });

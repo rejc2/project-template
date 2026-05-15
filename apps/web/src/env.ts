@@ -1,5 +1,6 @@
 const apiHost = import.meta.env['VITE_API_HOST'];
-const apiUrl = import.meta.env['VITE_API_URL'] ?? (apiHost ? `https://${apiHost}` : '');
+const apiUrl =
+	import.meta.env['VITE_API_URL'] ?? (apiHost ? `https://${apiHost}` : location.origin);
 
 export const env = {
 	apiUrl,
