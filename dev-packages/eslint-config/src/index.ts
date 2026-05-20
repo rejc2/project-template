@@ -45,7 +45,7 @@ export function getConfig({
 			rules: {
 				'no-unused-private-class-members': 'warn',
 
-				'prefer-const': 'warn',
+				'prefer-const': ['warn', { ignoreReadBeforeAssign: true }],
 
 				...(includeReact && {
 					// React rules

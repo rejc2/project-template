@@ -2176,6 +2176,15 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@rejc2/prettier-plugin-caddyfile@npm:^0.1.2":
+  version: 0.1.2
+  resolution: "@rejc2/prettier-plugin-caddyfile@npm:0.1.2"
+  peerDependencies:
+    prettier: ">=3"
+  checksum: 10c0/f176b8ffa3dd566aa3a94d1b69fbe32a9baeb785fdf1d98106347446a7cf52b7d4dcf6743c3f47970cf27db47b423fbb9aa8ba3066b5e19a17c8c7947e5ec00a
+  languageName: node
+  linkType: hard
+
 "@rejc2/projecttemplate-api-specs@workspace:*, @rejc2/projecttemplate-api-specs@workspace:packages/api-specs":
   version: 0.0.0-use.local
   resolution: "@rejc2/projecttemplate-api-specs@workspace:packages/api-specs"
@@ -2218,6 +2227,7 @@ __metadata:
     "@lingui/cli": "npm:^6.0.1"
     "@lingui/format-po": "npm:^6.0.1"
     "@opentelemetry/api": "npm:^1.9.1"
+    "@rejc2/prettier-plugin-caddyfile": "npm:^0.1.2"
     "@trivago/prettier-plugin-sort-imports": "npm:^6.0.2"
     ajv: "npm:^8.18.0"
     ajv-formats: "npm:^3.0.1"

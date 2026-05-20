@@ -5,9 +5,10 @@ export default {
 	useTabs: true,
 
 	plugins: [
-		'@trivago/prettier-plugin-sort-imports',
-		'prettier-plugin-nginx',
-		'prettier-plugin-prisma',
+		await import('@rejc2/prettier-plugin-caddyfile'),
+		await import('@trivago/prettier-plugin-sort-imports'),
+		await import('prettier-plugin-nginx'),
+		await import('prettier-plugin-prisma'),
 	],
 	alignDirectives: false,
 	importOrder: ['<THIRD_PARTY_MODULES>', '^@/', '^[./]'],
