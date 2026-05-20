@@ -1,0 +1,16 @@
+{
+	# For a public domain, set CADDY_ACME_EMAIL to receive Let's Encrypt notices.
+	email {$CADDY_ACME_EMAIL:null@example.com}
+}
+
+# Set SITE_ADDRESS to your public domain in production (e.g. example.com).
+# For `localhost` (the default), Caddy issues a cert from its internal CA.
+{$SITE_ADDRESS:localhost} {
+	handle /api/* {
+		reverse_proxy server:3000
+	}
+
+	handle {
+		reverse_proxy web:80
+	}
+}
