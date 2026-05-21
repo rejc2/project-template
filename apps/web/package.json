@@ -23,6 +23,7 @@
     "@mui/material": "^7.3.8",
     "@rejc2/pick-locale": "workspace:*",
     "@rejc2/projecttemplate-api-specs": "workspace:*",
+    "@rejc2/projecttemplate-api-tanstack-client": "workspace:*",
     "@rejc2/projecttemplate-locales": "workspace:*",
     "@tanstack/react-query": "^5.90.21",
     "better-auth": "^1.6.2",
