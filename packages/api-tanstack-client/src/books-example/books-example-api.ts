@@ -8,7 +8,7 @@ import type {
 	GetBooksResponse,
 } from '@rejc2/projecttemplate-api-specs/books-example';
 
-import { env } from '@/env';
+import { env } from '../env';
 
 export async function getBook(bookId: string): Promise<GetBookResponse> {
 	const response = await fetch(`${env.apiUrl}/api/books-example/${encodeURIComponent(bookId)}`);

@@ -1,7 +1,7 @@
 import { Box, CircularProgress, Stack, Typography } from '@mui/material';
 import { useParams } from 'react-router';
 
-import { useBook } from '@/api/books-example/books-example-api-hooks';
+import { useBook } from '@rejc2/projecttemplate-api-tanstack-client/books-example/books-example-api-hooks';
 import LogInWithGoogleButton from '@/components/LogInWithGoogleButton';
 
 export function BooksExampleBookPage() {
