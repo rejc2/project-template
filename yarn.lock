@@ -2196,6 +2196,25 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@rejc2/projecttemplate-api-tanstack-client@workspace:*, @rejc2/projecttemplate-api-tanstack-client@workspace:packages/api-tanstack-client":
+  version: 0.0.0-use.local
+  resolution: "@rejc2/projecttemplate-api-tanstack-client@workspace:packages/api-tanstack-client"
+  dependencies:
+    "@rejc2/projecttemplate-api-specs": "workspace:*"
+    "@rejc2/projecttemplate-eslint-config": "workspace:*"
+    "@tanstack/react-query": "npm:^5.90.21"
+    "@types/node": "npm:^25.6.0"
+    "@types/react": "npm:^19"
+    eslint: "npm:^9.39.2"
+    msw: "npm:^2.13.4"
+    nullthrows: "npm:^1.1.1"
+    react: "npm:^19.2.3"
+    typescript: "npm:^6.0.3"
+    vitest: "npm:^4.1.4"
+    zod: "npm:^4.3.6"
+  languageName: unknown
+  linkType: soft
+
 "@rejc2/projecttemplate-eslint-config@workspace:*, @rejc2/projecttemplate-eslint-config@workspace:dev-packages/eslint-config":
   version: 0.0.0-use.local
   resolution: "@rejc2/projecttemplate-eslint-config@workspace:dev-packages/eslint-config"
@@ -2302,6 +2321,7 @@ __metadata:
     "@mui/material": "npm:^7.3.8"
     "@rejc2/pick-locale": "workspace:*"
     "@rejc2/projecttemplate-api-specs": "workspace:*"
+    "@rejc2/projecttemplate-api-tanstack-client": "workspace:*"
     "@rejc2/projecttemplate-eslint-config": "workspace:*"
     "@rejc2/projecttemplate-locales": "workspace:*"
     "@tanstack/react-query": "npm:^5.90.21"

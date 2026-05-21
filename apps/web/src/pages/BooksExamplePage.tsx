@@ -2,7 +2,7 @@ import { Trans } from '@lingui/react/macro';
 import { Box, Button, Link, List, ListItem, ListItemText, Stack, Typography } from '@mui/material';
 import { Link as RouterLink } from 'react-router';
 
-import { useBooks } from '@/api/books-example/books-example-api-hooks';
+import { useBooks } from '@rejc2/projecttemplate-api-tanstack-client/books-example/books-example-api-hooks';
 import LogInWithGoogleButton from '@/components/LogInWithGoogleButton';
 
 export function BooksExamplePage() {
