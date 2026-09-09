@@ -6,6 +6,7 @@
 !/apps
 !/dev-packages
 !/packages
+!/scripts
 !/test-packages
 
 # Include formattable files in the root:
