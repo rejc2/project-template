@@ -3,19 +3,31 @@
 // Usage: node scripts/validate-yaml-schemas.js
 import Ajv from 'ajv';
 import addFormats from 'ajv-formats';
-import { readFileSync, readdirSync } from 'node:fs';
+import { readFile, readdir } from 'node:fs/promises';
 import { join, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { parse as parseJsonc, printParseErrorCode } from 'jsonc-parser';
 import { parse as parseYaml } from 'yaml';
 
 const ROOT = fileURLToPath(new URL('..', import.meta.url));
 const IGNORE_DIRS = new Set(['.git', '.sl', '.yarn', 'node_modules']);
 
-function* findYamlFiles(dir) {
-	for (const entry of readdirSync(dir, { withFileTypes: true })) {
+function getExtensionRegex(extensions) {
+	return new RegExp(`\\.(${[...extensions].map((ext) => RegExp.escape(ext)).join('|')})$`);
+}
+
+const yamlFileExtensions = ['yaml', 'yml'];
+const yamlFileNameRegex = getExtensionRegex(yamlFileExtensions);
+const jsonFileExtensions = ['json'];
+const jsonFileNameRegex = getExtensionRegex(jsonFileExtensions);
+
+const yamlJsonFileNameRegex = getExtensionRegex([...jsonFileExtensions, ...yamlFileExtensions]);
+
+async function* findYamlFiles(dir) {
+	for (const entry of await readdir(dir, { withFileTypes: true })) {
 		if (entry.isDirectory()) {
 			if (!IGNORE_DIRS.has(entry.name)) yield* findYamlFiles(join(dir, entry.name));
-		} else if (entry.name.endsWith('.yml') || entry.name.endsWith('.yaml')) {
+		} else if (yamlJsonFileNameRegex.test(entry.name)) {
 			yield join(dir, entry.name);
 		}
 	}
@@ -39,23 +51,42 @@ let validated = 0;
 let skipped = 0;
 let failed = 0;
 
-for (const filePath of [...findYamlFiles(ROOT)].sort()) {
-	const rel = relative(ROOT, filePath);
-	const content = readFileSync(filePath, 'utf8');
+const yamlFiles = [];
+for await (const file of findYamlFiles(ROOT)) yamlFiles.push(file);
+yamlFiles.sort();
 
-	const match = content.match(/^# yaml-language-server: \$schema=(.+)$/m);
-	if (!match) {
-		process.stdout.write(`skip  ${rel}\n`);
-		skipped++;
-		continue;
-	}
-
-	const schemaUrl = match[1].trim();
-	process.stdout.write(`check ${rel} ... `);
-
+for (const filePath of yamlFiles) {
 	try {
+		const rel = relative(ROOT, filePath);
+		const content = await readFile(filePath, 'utf8');
+
+		let schemaUrl = undefined;
+		let data = undefined;
+		if (jsonFileNameRegex.test(filePath)) {
+			const parseErrors = [];
+			data = parseJsonc(content, parseErrors, { allowTrailingComma: true });
+			if (parseErrors.length > 0) {
+				const [{ error, offset }] = parseErrors;
+				throw new Error(`JSONC parse error: ${printParseErrorCode(error)} at offset ${offset}`);
+			}
+			const schemaField = data?.['$schema'];
+			if (typeof schemaField === 'string') {
+				schemaUrl = schemaField;
+			}
+		} else if (yamlFileNameRegex.test(filePath)) {
+			const match = content.match(/^# yaml-language-server: \$schema=(.+)$/m);
+			schemaUrl = match?.[1].trim() || null;
+			data = parseYaml(content);
+		}
+
+		if (schemaUrl == null) {
+			skipped++;
+			continue;
+		}
+
+		process.stdout.write(`checking ${rel} ... `);
+
 		const schema = await fetchSchema(schemaUrl);
-		const data = parseYaml(content);
 		const validate = ajv.compile(schema);
 
 		if (validate(data)) {
@@ -69,7 +100,7 @@ for (const filePath of [...findYamlFiles(ROOT)].sort()) {
 			failed++;
 		}
 	} catch (err) {
-		process.stdout.write('ERROR\n');
+		process.stdout.write(`ERROR processing ${filePath}:\n`);
 		process.stderr.write(`  ${err.message}\n`);
 		failed++;
 	}
